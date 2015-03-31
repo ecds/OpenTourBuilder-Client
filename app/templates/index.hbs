@@ -1,0 +1,5 @@
+<ul>
+	{{#each tour in this.model}}
+		<li>{{#link-to 'tour' tour}}{{tour.name}}{{/link-to}}</li>
+	{{/each}}
+</ul>
