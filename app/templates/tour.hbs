@@ -1,14 +1,8 @@
 {{outlet}}
 {{model.name}}
-<ul>
 {{#each stop in model.stops}}
-<li>
 {{stop.name}}
-<ul>
 {{#each image in stop.images}}
-<li>{{image.image}}</li>
+{{image.image}}
 {{/each}}
-</ul>
-</li>
 {{/each}}
-</ul>
