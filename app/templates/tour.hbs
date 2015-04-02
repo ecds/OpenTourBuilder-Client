@@ -1,8 +1,9 @@
+<h1>{{model.name}}</h1>
+{{#each stop in model.stop_ids}}
+
+	<img {{bind-attr src=stop.map_image}}>
+	<a {{bind-attr href=stop.stop_link}}>maybe</a>
+	<h2>{{#link-to 'tour_stop' stop}}{{stop.position}}. {{stop.name}} {{/link-to}}</h2>
+
+{{/each}}
 {{outlet}}
-{{model.name}}
-{{#each stop in model.stops}}
-{{stop.name}}
-{{#each image in stop.images}}
-{{image.image}}
-{{/each}}
-{{/each}}

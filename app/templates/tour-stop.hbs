@@ -1,0 +1,21 @@
+{{outlet}}
+<h1>{{model.name}}</h1>
+<img {{bind-attr src=model.map_image}}>
+{{#if model.video_embed}}
+	hello
+{{/if}}
+<div>
+	<ul>
+	{{# if model.images}}
+		<li>{{#each image in model.images}}{{image.image}}{{/each}}</li>
+	{{/if}}
+	</ul>
+</div>
+<article>{{{model.description}}}</article>
+{{#if previous_stop}}
+	<a {{bind-attr href=model.previous_stop}}>Previous</a>
+{{/if}}
+
+{{#if next_stop}}
+	<a {{bind-attr href=model.next_stop}}>Next</a>
+{{/if}}

@@ -1,5 +1,5 @@
-<ul>
-	{{#each tour in this.model}}
-		<li>{{#link-to 'tour' tour}}{{tour.name}}{{/link-to}}</li>
-	{{/each}}
-</ul>
+{{#each tour in this.model}}
+	<h1>{{tour.name}}</h1>
+	<h2>{{{tour.description}}}</h2>
+	<h3>{{#link-to 'tour' tour}}Start Tour{{/link-to}}</h3>
+{{/each}}
