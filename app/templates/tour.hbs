@@ -2,7 +2,6 @@
 {{#each stop in model.stop_ids}}
 
 	<img {{bind-attr src=stop.map_image}}>
-	<a {{bind-attr href=stop.stop_link}}>maybe</a>
 	<h2>{{#link-to 'tour_stop' stop}}{{stop.position}}. {{stop.name}} {{/link-to}}</h2>
 
 {{/each}}

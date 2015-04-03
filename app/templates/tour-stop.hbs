@@ -13,9 +13,9 @@
 </div>
 <article>{{{model.description}}}</article>
 {{#if previous_stop}}
-	<a {{bind-attr href=model.previous_stop}}>Previous</a>
+	{{#link-to 'tour_stop' model.previous_stop}}Previous{{/link-to}}
 {{/if}}
 
 {{#if next_stop}}
-	<a {{bind-attr href=model.next_stop}}>Next</a>
+	{{#link-to 'tour_stop' model.next_stop}}Next{{/link-to}}
 {{/if}}
