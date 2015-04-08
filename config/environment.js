@@ -39,13 +39,13 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  ENV.contentSecurityPolicy = {
+    ENV.contentSecurityPolicy = {
     'default-src': "'none'",
-    'script-src': "'self' https://cdn.mxpnl.com", // Allow scripts from https://cdn.mxpnl.com
+    'script-src': "'self' 'unsafe-eval' https://cdn.mxpnl.com http://*.googleapis.com http://maps.gstatic.com", // Allow scripts from https://cdn.mxpnl.com
     'font-src': "'self' http://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
-    'connect-src': "'self' http://172.16.83.129:8000", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
-    'img-src': "'self' http://maps.googleapis.com",
-    'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
+    'connect-src': "'self' http://172.16.83.129:8000 http://maps.gstatic.com", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+    'img-src': "'self' http://csi.gstatic.com http://*.googleapis.com http://maps.gstatic.com ",
+    'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com http://maps.gstatic.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
     'media-src': "'self'"
   };
 

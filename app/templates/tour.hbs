@@ -5,4 +5,9 @@
 	<h2>{{#link-to 'tour_stop' stop}}{{stop.position}}. {{stop.name}} {{/link-to}}</h2>
 
 {{/each}}
+<ul>
+	{{#each info in model.info_ids}}
+		<li>{{info.name}}</li>
+	{{/each}}
+</ul>
 {{outlet}}

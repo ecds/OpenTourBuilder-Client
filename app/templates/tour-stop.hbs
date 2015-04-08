@@ -12,6 +12,9 @@
 	</ul>
 </div>
 <article>{{{model.description}}}</article>
+
+{{stop-directions latitude=model.lat longitude=model.lng}}
+
 {{#if previous_stop}}
 	{{#link-to 'tour_stop' model.previous_stop}}Previous{{/link-to}}
 {{/if}}
