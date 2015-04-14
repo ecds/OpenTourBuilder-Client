@@ -1,2 +1,9 @@
 {{yield}}
+<div class="loading">LOADING</div>
+<select id="mode_select">
+	{{#each mode in modes}}
+  		<option value="{{unbound mode}}">{{mode}}</option>
+  	{{/each}}
+</select>
 <div class="map-canvas"></div>
+<div id="directions"></div>

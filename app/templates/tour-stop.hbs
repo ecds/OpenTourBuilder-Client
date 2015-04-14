@@ -13,7 +13,7 @@
 </div>
 <article>{{{model.description}}}</article>
 
-{{stop-directions latitude=model.lat longitude=model.lng}}
+{{stop-directions latitude=model.lat longitude=model.lng mode="TRANSIT" modes=model.direction_modes}}
 
 {{#if previous_stop}}
 	{{#link-to 'tour_stop' model.previous_stop}}Previous{{/link-to}}

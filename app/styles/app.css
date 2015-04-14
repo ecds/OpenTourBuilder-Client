@@ -2,3 +2,12 @@
 	width: 100%;
 	height: 400px;
 }
+
+.adp~.adp {
+	display: none;
+	visibility: hidden;
+}
+
+select#mode_select {
+	display: none;
+}

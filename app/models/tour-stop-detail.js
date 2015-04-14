@@ -17,9 +17,10 @@ export default DS.Model.extend({
 	lng: DS.attr(),
 	park_lat: DS.attr(),
 	park_lng: DS.attr(),
+	direction_modes: DS.attr(),
 	directions_intro: DS.attr('string'),
 	direction_notes: DS.attr('string'),
 	images: DS.attr(),
 	previous_stop: DS.attr('string'),
-	next_stop: DS.attr('string')
+	next_stop: DS.attr('string'),
 });
