@@ -23,4 +23,6 @@ export default DS.Model.extend({
 	images: DS.attr(),
 	previous_stop: DS.attr('string'),
 	next_stop: DS.attr('string'),
+	geospatial: DS.attr('boolean'),
+	intro: DS.attr('boolean')
 });

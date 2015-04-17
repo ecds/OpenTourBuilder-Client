@@ -34,9 +34,7 @@ export default Ember.Component.extend({
         		}
         	);
 
-    		function successCallback(position) {
-      			console.log(position)
-    		}
+    		function successCallback(position) {}
 
     		function errorCallback() {
       			$(".loading").hide();

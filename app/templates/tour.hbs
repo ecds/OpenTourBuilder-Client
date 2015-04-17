@@ -1,13 +1,29 @@
-<h1>{{model.name}}</h1>
-{{#each stop in model.stop_ids}}
+<h1 class="ui-header">{{model.name}}</h1>
 
-	<img {{bind-attr src=stop.map_image}}>
-	<h2>{{#link-to 'tour_stop' stop}}{{stop.position}}. {{stop.name}} {{/link-to}}</h2>
+<div>
+	{{#each stop in model.stop_ids}}
+		<div class="stop">
+			{{#if stop.intro}}
+				<h2>{{#link-to 'tour_stop' stop}}{{stop.name}} {{/link-to}}</h2>
+			{{else}}
 
-{{/each}}
+				{{#if geospatial}}
+					<img {{bind-attr src=stop.map_image}}/>
+				{{else}}
+					{{#each image in stop.images}}
+						<img {{bind-attr src=image.image_preview}}/>
+					{{/each}}
+				{{/if}}
+				<h2>{{#link-to 'tour_stop' stop}}{{stop.position}}. {{stop.name}} {{/link-to}}</h2>
+			{{/if}}
+		</div>
+	{{/each}}
+</div>
+{{!--
 <ul>
 	{{#each info in model.info_ids}}
 		<li>{{info.name}}</li>
 	{{/each}}
 </ul>
+--}}
 {{outlet}}

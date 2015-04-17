@@ -1,19 +1,22 @@
 {{outlet}}
 <h1>{{model.name}}</h1>
-<img {{bind-attr src=model.map_image}}>
+
 {{#if model.video_embed}}
 	hello
 {{/if}}
 <div>
-	<ul>
+	{{!--<ul>
 	{{# if model.images}}
 		<li>{{#each image in model.images}}{{image.image}}{{/each}}</li>
 	{{/if}}
-	</ul>
+	</ul>--}}
 </div>
 <article>{{{model.description}}}</article>
 
-{{stop-directions latitude=model.lat longitude=model.lng mode="TRANSIT" modes=model.direction_modes}}
+{{#if model.geospatial}}
+	<img {{bind-attr src=model.map_image}}>
+	{{stop-directions latitude=model.lat longitude=model.lng mode="TRANSIT" modes=model.direction_modes}}
+{{/if}}
 
 {{#if previous_stop}}
 	{{#link-to 'tour_stop' model.previous_stop}}Previous{{/link-to}}
