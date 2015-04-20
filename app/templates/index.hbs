@@ -1,5 +1,5 @@
 {{#each tour in this.model}}
 	<h1>{{tour.name}}</h1>
-	<h2>{{{tour.description}}}</h2>
+	<p>{{{tour.description}}}</p>
 	<h3>{{#link-to 'tour' tour}}Start Tour{{/link-to}}</h3>
 {{/each}}
