@@ -1,0 +1,15 @@
+{{yield}}
+<div class="menu">
+
+	<div class="dropdown">
+ 		<div class="dropdown-container">
+    		<p class="dropdown-button">Menu</p>
+			<ul class="dropdown-menu dropdown-select">
+				{{#each info in infos}}
+      				<li>{{info.name}}</li>
+      			{{/each}}
+    		</ul>
+  		</div>
+	</div>
+
+</div>

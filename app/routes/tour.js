@@ -7,30 +7,29 @@ export default Ember.Route.extend({
 		return this.store.find('tourDetail', params.slug);
 	},
 
-	didInsertElement: function() {
-
-	},
-
 	actions: {
+
+		toggleList: function(){
+			$(".stop-list").toggle();
+			$("button#stop-list-button").addClass("active").prop('disabled', true);
+			$("button#map-overview-button").removeClass("active").prop('disabled', false);
+			$(".overview-map").toggle();
+		},
+
 		mapTour: function initializeMap(){
 
-			$(document).ready(function(){
-  $(".dropdown-button").click(function() {
-    $(".dropdown-menu").toggleClass("show-menu");
-    $(".dropdown-menu > li").click(function(){
-      $(".dropdown-menu").removeClass("show-menu");
-    });
-    $(".dropdown-menu.dropdown-select > li").click(function() {
-      $(".dropdown-button").html($(this).html());
-    });
-  });
-});
-
-
+			$(".stop-list").toggle();
+			$(".overview-map").toggle();
+			$("button#stop-list-button").removeClass("active").prop('disabled', false);
+			$("button#map-overview-button").addClass("active").prop('disabled', true);
 
 			var tour = DS.PromiseObject.create({
 				promise: this.store.find('tourDetail', this.currentModel.id)
 			});
+			
+			var activeWindow;
+			
+			var bounds = new google.maps.LatLngBounds();
 
 			tour.then(function(){
 				var stops = tour.get('content.stop_ids').get('content.currentState');
@@ -49,11 +48,30 @@ export default Ember.Route.extend({
 					      		stop.get('content.lng')
 		      				);
 
+		      				bounds.extend(stopCords);
+
+		      				var contentString = '<h1>' + stop.get('content.name') + '</h1>' +
+		      									'<article>' + stop.get('content.metadescription') + '</article>';
+
+		      				var infowindow = new google.maps.InfoWindow({
+      							content: contentString
+  							});
+
+  							var icon = '/assets/images/markers/marker' + stop.get('content.position') + '.png';
+
 		      				var marker = new google.maps.Marker({
 							      position: stopCords,
 							      map: map,
-							      bounds: true
+							      icon: icon
 							 });
+		      				google.maps.event.addListener(marker, 'click', function() {
+		      					// If there is already an info window, close it.
+		      					if(activeWindow != null) {
+		      						activeWindow.close();
+		      					}
+    							infowindow.open(map,marker);
+    							activeWindow = infowindow;
+  							});
 		      			}
 					});
 
@@ -63,12 +81,13 @@ export default Ember.Route.extend({
 			var container = $(".overview-map");
 
 			var options = {
-      			center: new google.maps.LatLng(33.754318, -84.389791),
       			zoom: 12,
       			mapTypeId: google.maps.MapTypeId.ROADMAP
     		};
 
 			var map = new google.maps.Map(container[0], options);
+
+			map.fitBounds(bounds);
 
 		}
 

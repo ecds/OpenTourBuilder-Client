@@ -33,6 +33,9 @@ nav {
 				@include span-columns(2);
 			}
 
+			// Menu dropdown is handeled in the Bitters
+			// /public/assets/base/_dropdown.scss
+
 			&.back, &.tour-title {
 				text-align: center
 			}
@@ -44,35 +47,6 @@ nav {
 		}
 
 	}
-
-	&.overview-nav {
-
-		background-color: #f6f6f6;
-		border-color: #ddd;
-		color: #333;
-		text-shadow: 0 1px 0 #f3f3f3;
-  		z-index: 10;
-  		padding: .5em 0;
-
-		div{
-			@include span-columns(6);
-			text-align: center;
-		}
-
-		li.ivy-tab[selected='selected'] {
-  			width: 100%;
-  			display: block;
-  			height: 100%;
-  			background-color: #CFCFCF;
-		}
-
-		li.ivy-tab[aria-selected='false'] {
-			cursor: pointer;
-		}
-
-	}
-
-
 	
 }
 
@@ -159,6 +133,23 @@ section.stop-list {
 	}
 }
 
+nav.tour-overview {
+	@inlude row();
+	button {
+		@include span-columns(6);
+		background-color: #f6f6f6;
+		color: #333;
+
+		&.active {
+			background-color: #CFCFCF;
+		}
+	}
+}
+
+
+.overview-map {
+	display: none;
+}
 
 .map-canvas, .overview-map {
  	width: 100%;
