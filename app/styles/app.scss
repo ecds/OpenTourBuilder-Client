@@ -230,15 +230,17 @@ button.back {
 
 div.tour-detail {
 	background-color: $background-color;
+	height: 100vh;
 }
 
 section.stop-list {
 
 	text-align: center;
-	margin: 0 0 3em 0;
+	margin: 0;
 	padding-top: 2em;
 	width: 100%;
 	padding-right: 2em;
+	//height: 100%;
 
 	div {
 		text-align: left;
@@ -307,6 +309,11 @@ section.stop-list {
 
 nav.tour-overview {
 
+	@include span-columns(12);
+	top: auto;
+	bottom: 0;
+	position: fixed;
+
 	button {
 		@include span-columns(6);
 		background-color: #f6f6f6;
@@ -324,7 +331,7 @@ nav.tour-overview {
 	top: 0;
 	background-color: #333;
 	width: 100%;
-	height: 90vh;
+	height: 100vh;
 
 	div.rounded-corners {
 		border-radius: 15px 15px 0 0 !important;
@@ -340,10 +347,20 @@ nav.tour-overview {
 		background: #D8CFC2;
 		overflow: hidden;
 		height: 75px;
+		z-index: 10;
 
-		img {
-			height: 100px;
-			width: 100px;
+		button {
+
+			padding: 0;
+
+			&.map-preview {
+				float: right;
+			}
+
+			img {
+				height: 100px;
+				width: 100px;
+			}
 		}
 
 		.stop-nav-left {
@@ -356,7 +373,6 @@ nav.tour-overview {
 				@include span-columns(1 of 8);
 
 				a {
-					color: red;
 					font-size: .75em;
 				}
 				
@@ -429,12 +445,17 @@ nav.tour-overview {
 
 	.stop-directions {
 		display: none;
+		position: absolute;
+		padding-top: 5em;
+		width: 100%;
+		height: 100%;
 	}
 
 	nav.stop-nav {
 		@include span-columns(12);
-		position: relative;
+		position: fixed;
 		bottom: 0;
+		top: auto;
 		text-align: center;
 		background-color: #EEEBE2;
 
@@ -447,7 +468,10 @@ nav.tour-overview {
 			border-style: solid;
 			background-color: transparent;
 			color: #333;
-			padding: .5em 6em;
+			//padding: .5em 6em;
+			width: 80%;
+			margin: 1em 0;
+
 		}
 
 		.previous-button {
@@ -460,15 +484,17 @@ nav.tour-overview {
 	}
 }
 
-.overview-map {
-	display: none;
-}
-
 .map-canvas, .overview-map {
  	width: 100%;
  	height: 400px;
 }
 
+.overview-map {
+	display: none;
+	height: 100%;
+}
+
+// Hack to remove multiple instances of the directions panel.
 .adp~.adp {
 	display: none;
 	visibility: hidden;

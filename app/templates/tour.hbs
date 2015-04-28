@@ -44,16 +44,16 @@
 				
 		{{/each}}
 	</section>
-	<section>{{outlet}}</section>
-</div>
+	
+	<div class="overview-map">
+		{{overview-map}}
+	</div>
 
-<div class="overview-map">
-	{{overview-map}}
-</div>
-
-<div>
 	<nav class="tour-overview">
 		{{toggle-list action="toggleList"}}
 		{{toggle-map action="mapTour"}}
 	</nav>
+	<section>{{outlet}}</section>
 </div>
+
+
