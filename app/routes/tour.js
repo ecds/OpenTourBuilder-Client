@@ -81,9 +81,10 @@ export default Ember.Route.extend({
     							infowindow.open(map,marker);
     							activeWindow = infowindow;
   							});
-
-  							map.fitBounds(bounds);
 		      			}
+
+		      			map.fitBounds(bounds);
+		      			
 					});
 
 				});

@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
  	name: DS.attr('string'),
  	slug: DS.attr('string'),
-	tour: DS.belongsTo('tourDetail'),
+	tour: DS.belongsTo('tourDetail', {async: true}),
 	map_image: DS.attr('string'),
 	position: DS.attr('number'),
 	page: DS.attr('number'),

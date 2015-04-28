@@ -1,5 +1,30 @@
-{{#each tour in this.model}}
-	<h1>{{tour.name}}</h1>
-	<p>{{{tour.description}}}</p>
-	<h3>{{#link-to 'tour' tour}}Start Tour{{/link-to}}</h3>
-{{/each}}
+<div id="home-content">
+	{{#each tour in this.model}}
+		<div {{bind-attr class=":jumbotron tour.slug"}}>
+
+			<style>
+				{{tour.slug_class}} {
+					background-image: url({{tour.phone_splash}});
+		        }
+		        @media(min-width:767px){
+		            {{tour.slug_class}}{
+		                background-image: url({{ tour.tablet_splash}});
+		                background-position: center 70%;
+		            }
+		        }
+		        @media(min-width:993px){
+		            {{tour.slug_class}}{
+		                background-image: url({{ tour.desktop_splash}});
+		            }
+			</style>
+
+			<div class="container">
+				<h1 class="jumbo-header">{{tour.name}}</h1>
+				<p>{{{tour.description}}}</p>
+				{{#link-to 'tour' tour}}
+					<button>Start Tour</button>
+				{{/link-to}}
+			</div>
+		</div>
+	{{/each}}
+</div>

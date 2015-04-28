@@ -1,27 +1,64 @@
 {{outlet}}
-<h1>{{model.name}}</h1>
+<div class="tour-stop">
 
-{{#if model.video_embed}}
-	hello
-{{/if}}
-<div>
-	{{!--<ul>
-	{{# if model.images}}
-		<li>{{#each image in model.images}}{{image.image}}{{/each}}</li>
+	<div class="rounded-corners">
+		<nav class="tour-stop-nav">
+			<div class="stop-nav-left">
+				<div class="tour-home-button">
+					{{#link-to 'tour' model.tour.slug}}<button>Home</button>{{/link-to}}
+				</div>
+				<div class="tour-title">
+					<h1>{{model.tour.name}}</h1>
+				</div>
+				<div class="stop-name">
+					<h1>{{model.name}}</h1>
+				</div>
+			</div>
+			<div class="stop-nav-right">
+				{{#if model.geospatial}}
+					<img {{bind-attr src=model.map_image}}>
+				{{/if}}
+			</div>
+		</nav>
+	</div>
+
+	<section>
+		{{#if model.video_embed}}
+			hello
+		{{/if}}
+		<div>
+			{{!--<ul>
+			{{# if model.images}}
+				<li>{{#each image in model.images}}{{image.image}}{{/each}}</li>
+			{{/if}}
+			</ul>--}}
+		</div>
+
+		<article>{{{model.description}}}</article>
+
+	</section>
+
+	{{#if model.geospatial}}
+		<div class="stop-directions">
+			{{stop-directions latitude=model.lat longitude=model.lng modes=model.direction_modes}}
+		</div>
 	{{/if}}
-	</ul>--}}
+
+	<nav class="stop-nav">
+		<div class="previous-button">
+		{{#if previous_stop}}
+			{{#link-to 'tour_stop' model.previous_stop}}
+				<button>Previous</button>
+			{{/link-to}}
+		{{/if}}
+		</div>
+		<div class="next-button">
+			{{#if next_stop}}
+				{{#link-to 'tour_stop' model.next_stop}}
+					<button>Next</button>
+				{{/link-to}}
+			{{/if}}
+		</div>
+	</nav>
+	
 </div>
-<article>{{{model.description}}}</article>
-
-{{#if model.geospatial}}
-	<img {{bind-attr src=model.map_image}}>
-	{{stop-directions latitude=model.lat longitude=model.lng mode="TRANSIT" modes=model.direction_modes}}
-{{/if}}
-
-{{#if previous_stop}}
-	{{#link-to 'tour_stop' model.previous_stop}}Previous{{/link-to}}
-{{/if}}
-
-{{#if next_stop}}
-	{{#link-to 'tour_stop' model.next_stop}}Next{{/link-to}}
-{{/if}}
