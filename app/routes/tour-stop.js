@@ -9,11 +9,7 @@ export default Ember.Route.extend({
 	},
 
 	actions: {
-		showDirections: function(lat, lng){
-			
-			//console.log(this.globals.preferredMode);
-
-			var _this = this;
+		showDirections: function(lat, lng, parkLat, parkLng){
 			
 			Ember.$(".stop-article").toggle();
 			Ember.$(".stop-directions").toggle();
@@ -21,20 +17,19 @@ export default Ember.Route.extend({
 
 			var selectedMode = Cookies.get('selectedMode');
 
-			if(typeof(selectedMode) != undefined){
+			if(typeof(selectedMode) === undefined){
 				selectedMode = 'WALKING';
 			}
 
-			console.log(Cookies.get('selectedMode'));
+			Ember.$("#mode_select").val(selectedMode);
+				Ember.$(".selectize-input").html(selectedMode);
 
 			Ember.$(document).on('change','#mode_select',function(){
 				Ember.$("#directions").empty();
 				var selectedMode = Ember.$("#mode_select").val();
-				console.log(selectedMode);
 				Cookies.set('selectedMode', selectedMode);
-				//_this.globals.set('preferredMode', selectedMode);
-				//console.log(_this.globals.preferredMode);
-				initializeMap(selectedMode, lat, lng);
+
+				initializeMap(selectedMode, lat, lng, parkLat, parkLng);
 
 			});
 
@@ -42,8 +37,8 @@ export default Ember.Route.extend({
 
 				// Set the value the user last used
 				Ember.$("#mode_select").val(selectedMode);
-
-				//console.log(selectedMode);
+				Ember.$(".selectize-input").html(selectedMode);
+				Ember.$("[data-value="+selectedMode+"]").addClass("selected active");
 
 				Ember.$(".loading").show();
 
@@ -56,7 +51,7 @@ export default Ember.Route.extend({
 
 		    	var parking = null;
 
-		    	if (typeof(parkLng) != "undefined" && typeof(parkLat) != "undefined") {
+		    	if (typeof(parkLng) !== "undefined" && typeof(parkLat) !== "undefined") {
 		    		parking = new google.maps.LatLng(
 		    			parkLat,
 		    			parkLng
@@ -71,7 +66,7 @@ export default Ember.Route.extend({
 	        		}
 	        	);
 
-	    		function successCallback(position) {}
+	    		function successCallback() {}
 
 	    		function errorCallback() {
 	      			Ember.$(".loading").hide();
@@ -82,17 +77,19 @@ export default Ember.Route.extend({
 			    	marker.setMap(map);
 			    	// Use Google's geocoder to get the address base on the lat and lng.
                     var geocoder = new google.maps.Geocoder();
+                    var location;
                     if (parking) {
-                    	var location = parking;
+                    	location = parking;
                     }
                     else {
-                    	var location = stop;
+                    	location = stop;
                     }
 
                     if(geocoder) {
                     	geocoder.geocode({
                     		'latLng': location
                     	},function(results, status){
+                    		Ember.$('.geoservice-warning').show();
                     		Ember.$('.fallback').show();
                     		if(status === google.maps.GeocoderStatus.OK){
                     			Ember.$("span.address").html(results[0].formatted_address);
@@ -135,7 +132,7 @@ export default Ember.Route.extend({
 						    Ember.$(".loading").hide();
 
 						    // Show mode selector.
-						    Ember.$(".mode-select").show();
+						    Ember.$(".selectize-control").show();
 
 						    //initializeMap(selectedMode, lat, lng);
 

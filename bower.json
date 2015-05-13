@@ -13,6 +13,11 @@
     "ember-qunit-notifications": "0.0.7",
     "qunit": "~1.17.1",
     "bourbon": "4.2.1",
-    "neat": "~1.7.2"
+    "neat": "~1.7.2",
+    "select2": "3.5.2",
+    "selectize": "~0.12.1"
+  },
+  "devDependencies": {
+    "js-cookie": "~1.5.1"
   }
 }

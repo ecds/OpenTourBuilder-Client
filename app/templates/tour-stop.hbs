@@ -35,19 +35,24 @@
 			{{/if}}
 			</ul>--}}
 		</div>
-		{{globals.name}}
+		
 		<article class="stop-article">{{{model.description}}}</article>
 
 		{{#if model.geospatial}}
 			<div class="stop-directions">
 				{{partial "loading"}}
 				<section>
-					<div class="mode-select">
-						<select id="mode_select" dir="auto">
-							{{#each mode in model.direction_modes}}
-		  						<option value="{{unbound mode}}">{{mode}}</option>
-		  					{{/each}}
-						</select>
+					
+
+					{{ember-selectize
+						id="mode_select"
+						content=model.direction_modes
+						optionValuePath="content"
+						optionLabelPath="content"
+					}}
+					<div class="geoservice-warning">
+						<h2>Location Services Disabled</h2>
+						<p>Sorry, we need to be able to access your location in order to display directions.</p>
 					</div>
 					<div class="map-canvas"></div>
 					<div class="fallback">
