@@ -1,4 +1,7 @@
 import Ember from 'ember';
+/* global google */
+/* global Cookies */
+//import Cookies from 'cookies/js.cookies.js';
 
 export default Ember.Route.extend({
 	model: function(params){
@@ -7,25 +10,40 @@ export default Ember.Route.extend({
 
 	actions: {
 		showDirections: function(lat, lng){
-			console.log(lng);
+			
+			//console.log(this.globals.preferredMode);
+
+			var _this = this;
 			
 			Ember.$(".stop-article").toggle();
 			Ember.$(".stop-directions").toggle();
 			Ember.$("#directions").empty();
 
-			var selectedMode = document.getElementById('mode_select').value;
+			var selectedMode = Cookies.get('selectedMode');
+
+			if(typeof(selectedMode) != undefined){
+				selectedMode = 'WALKING';
+			}
+
+			console.log(Cookies.get('selectedMode'));
 
 			Ember.$(document).on('change','#mode_select',function(){
 				Ember.$("#directions").empty();
-				var selectedMode = document.getElementById('mode_select').value;
+				var selectedMode = Ember.$("#mode_select").val();
+				console.log(selectedMode);
+				Cookies.set('selectedMode', selectedMode);
+				//_this.globals.set('preferredMode', selectedMode);
+				//console.log(_this.globals.preferredMode);
 				initializeMap(selectedMode, lat, lng);
 
 			});
 
-			function initializeMap(selectedMode, lat, lng){
+			function initializeMap(selectedMode, lat, lng, parkLng, parkLat){
 
-				console.log(selectedMode);
-				console.log(lat);
+				// Set the value the user last used
+				Ember.$("#mode_select").val(selectedMode);
+
+				//console.log(selectedMode);
 
 				Ember.$(".loading").show();
 
@@ -36,11 +54,20 @@ export default Ember.Route.extend({
 		      		lng
 		      	);
 
+		    	var parking = null;
+
+		    	if (typeof(parkLng) != "undefined" && typeof(parkLat) != "undefined") {
+		    		parking = new google.maps.LatLng(
+		    			parkLat,
+		    			parkLng
+		    		);
+		    	}
+
 		    	navigator.geolocation.getCurrentPosition(
 		    		successCallback,
 	                errorCallback,{
 	                	maximumAge: 0,
-	        			timeout:50000
+	        			timeout: 50000
 	        		}
 	        	);
 
@@ -53,6 +80,28 @@ export default Ember.Route.extend({
 			    		map: map,
 			    	});
 			    	marker.setMap(map);
+			    	// Use Google's geocoder to get the address base on the lat and lng.
+                    var geocoder = new google.maps.Geocoder();
+                    if (parking) {
+                    	var location = parking;
+                    }
+                    else {
+                    	var location = stop;
+                    }
+
+                    if(geocoder) {
+                    	geocoder.geocode({
+                    		'latLng': location
+                    	},function(results, status){
+                    		Ember.$('.fallback').show();
+                    		if(status === google.maps.GeocoderStatus.OK){
+                    			Ember.$("span.address").html(results[0].formatted_address);
+                    		}
+                    		else{
+                    			Ember.$("span.address-warn").html('Unable to determine address.');
+                    		}
+                    	});
+                    }
 	    		}
 
 				navigator.geolocation.getCurrentPosition(function(position){
@@ -79,9 +128,6 @@ export default Ember.Route.extend({
 							// Draw route to map
 					    	directionsDisplay.setDirections(result);
 
-					    	// Set the value the user last used
-					    	Ember.$("#mode_select").val(selectedMode);
-
 					    	// List turn-by-turn directions
 						    directionsDisplay.setPanel(document.getElementById('directions'));
 
@@ -89,7 +135,7 @@ export default Ember.Route.extend({
 						    Ember.$(".loading").hide();
 
 						    // Show mode selector.
-						    Ember.$("#mode_select").show();
+						    Ember.$(".mode-select").show();
 
 						    //initializeMap(selectedMode, lat, lng);
 

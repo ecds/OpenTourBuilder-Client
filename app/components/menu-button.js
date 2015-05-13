@@ -2,14 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 	didInsertElement: function() {
-		$(document).ready(function(){
-		  $(".dropdown-button").click(function() {
-		    $(".dropdown-menu").toggleClass("show-menu");
-		    $(".dropdown-menu > li").click(function(){
-		      $(".dropdown-menu").removeClass("show-menu");
+		Ember.$(document).ready(function(){
+		  Ember.$(".dropdown-button").click(function() {
+		    Ember.$(".dropdown-menu").toggleClass("show-menu");
+		    Ember.$(".dropdown-menu > li").click(function(){
+		      Ember.$(".dropdown-menu").removeClass("show-menu");
 		    });
-		    $(".dropdown-menu.dropdown-select > li").click(function() {
-		      $(".dropdown-button").html($(this).html());
+		    Ember.$(".dropdown-menu.dropdown-select > li").click(function() {
+		      Ember.$(".dropdown-button").html(Ember.$(this).html());
 		    });
 		  });
 		});

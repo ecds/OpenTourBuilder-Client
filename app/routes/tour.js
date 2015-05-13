@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+/* global google */
 
 export default Ember.Route.extend({
 	model: function(params){
@@ -25,6 +26,8 @@ export default Ember.Route.extend({
 			Ember.$("button#map-overview-button").addClass("active").prop('disabled', true);
 
 			var activeWindow;
+
+			Ember.$(".loading").show();
 			
 			var map = null;
 
@@ -84,7 +87,7 @@ export default Ember.Route.extend({
 		      			}
 
 		      			map.fitBounds(bounds);
-		      			
+
 					});
 
 				});
@@ -98,10 +101,7 @@ export default Ember.Route.extend({
     		};
 
 			map = new google.maps.Map(container[0], options);
-
-			console.log(map.getCenter())
-
-			
+			Ember.$(".loading").hide();
 
 		}
 

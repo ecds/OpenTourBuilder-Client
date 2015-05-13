@@ -468,9 +468,9 @@ nav.tour-overview {
 			border-style: solid;
 			background-color: transparent;
 			color: #333;
-			//padding: .5em 6em;
 			width: 80%;
 			margin: 1em 0;
+			padding: .5em 0;
 
 		}
 
@@ -500,6 +500,85 @@ nav.tour-overview {
 	visibility: hidden;
 }
 
-select#mode_select {
+.mode-select {
+	background: transparent;
+	font-size: 1.5em;
+	width: 80%;
+	box-align: center;
+
+	select {
+		text-align: center;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		border-radius: 0;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		box-align: center;
+		background: url(/assets/images/down_arrow_select.jpg) no-repeat right;
+	}
+
+}
+
+.mode-select {
+   height: 34px;
+   overflow: hidden;
+   // background: url(/assets/images/down_arrow_select.jpg) no-repeat right white;
+   border: 1px solid #ccc;
+   border-radius: .5em;
+   margin: .25em auto;
+   text-align: center;
+}
+
+.loading {
+    display: block;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    padding: 0;
+    background-color: rgba(87, 84, 59, 0.46);
+    z-index: 2;
+    text-align: center;
+    margin-top: 0em;
+    height: 100%;
+
+    .ui-loader {
+    	top: 30%;
+		width: 12.5em;
+		opacity: .88;
+		box-shadow: 0 1px 1px -1px #fff;
+		height: auto;
+		margin: 0 auto .625em;
+		padding: 1em;
+		background-color: #fff;
+		border-color: #ddd;
+		color: #333;
+		text-shadow: 0 1px 0 #f3f3f3;
+		position: relative;
+		border-radius: .3125em;
+    }
+}
+
+.loading-icon {
+	background-image: url(/assets/images/ajax-loader.gif);
+	content: '';
+	width: 2.75em;
+	height: 2.75em;
+	display: block;
+	background-size: 2.875em 2.875em;
+	border-radius: 2.25em;
+	margin: 0 auto .625em;
+}
+
+.fallback, .geoservice-warning {
 	display: none;
 }
+
+.address, .address-warn {
+	font-weight: 600;
+}
+
+.address-warn {
+	color: red;
+}
+

@@ -16,7 +16,7 @@
 			</div>
 			<div class="stop-nav-right">
 				{{#if model.geospatial}}
-				<button {{action "showDirections" model.lat model.lng}} class="map-preview">
+				<button {{action "showDirections" model.lat model.lng model.park_lat model.park_lng}} class="map-preview">
 					<img {{bind-attr src=model.map_image}}>
 				</button>
 				{{/if}}
@@ -35,23 +35,29 @@
 			{{/if}}
 			</ul>--}}
 		</div>
-
+		{{globals.name}}
 		<article class="stop-article">{{{model.description}}}</article>
 
 		{{#if model.geospatial}}
-		<div class="stop-directions">
-			<section>
-				<div class="loading">LOADING</div>
-				<select id="mode_select">
-					{{#each mode in model.direction_modes}}
-  						<option value="{{unbound mode}}">{{mode}}</option>
-  					{{/each}}
-				</select>
-				<div class="map-canvas"></div>
-				<div id="directions"></div>
-			</section>
-		</div>
-	{{/if}}
+			<div class="stop-directions">
+				{{partial "loading"}}
+				<section>
+					<div class="mode-select">
+						<select id="mode_select" dir="auto">
+							{{#each mode in model.direction_modes}}
+		  						<option value="{{unbound mode}}">{{mode}}</option>
+		  					{{/each}}
+						</select>
+					</div>
+					<div class="map-canvas"></div>
+					<div class="fallback">
+						Approximate Address: <span class="address"></span>
+						<span class="address-warn"></span>
+					</div>
+					<div id="directions"></div>
+				</section>
+			</div>
+		{{/if}}
 
 	</section>
 
