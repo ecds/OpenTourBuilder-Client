@@ -18,5 +18,7 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 app.import('bower_components/js-cookie/src/js.cookie.js');
+app.import('bower_components/swiper/dist/js/swiper.min.js');
+app.import('bower_components/swiper/dist/css/swiper.min.css');
 
 module.exports = app.toTree();
