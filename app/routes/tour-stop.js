@@ -17,7 +17,7 @@ export default Ember.Route.extend({
 
 			var selectedMode = Cookies.get('selectedMode');
 
-			if(typeof(selectedMode) === undefined){
+			if(typeof(selectedMode) === "undefined"){
 				selectedMode = 'WALKING';
 			}
 

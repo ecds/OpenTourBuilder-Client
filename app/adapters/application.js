@@ -1,7 +1,7 @@
 import DS from "ember-data";
 
 export default DS.RESTAdapter.extend({
-	host: 'http://172.16.83.129:8000',
+	host: 'http://172.16.83.143:8000',
 	namespace: 'v1',
 	// suffix: '&format=json',
 	// query_marker: '?',

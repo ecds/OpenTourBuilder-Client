@@ -1,8 +1,26 @@
-<nav class="top-nav">
-	{{back-button}}
-	<div class="tour-title"><h1>{{model.name}}</h1></div>
-	{{menu-button infos=model.info_ids}}
-</nav>
+<header class="centered-navigation" role="banner">
+  <div class="centered-navigation-wrapper">
+    <nav role="navigation">
+      <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
+        <li class="nav-link">{{#link-to 'index' }}Back{{/link-to}}</li>
+
+        <li class="nav-link title">
+          {{model.name}}
+        </li>
+
+        <li class="nav-link more"><a href="javascript:void(0)">Menu</a>
+          <ul class="submenu">
+            {{#each info in model.info_ids}}
+            	<li>{{#link-to 'tour_info' info}}{{info.name}}{{/link-to}}</li>
+            {{/each}}
+
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
 
 
 <div class="tour-detail">

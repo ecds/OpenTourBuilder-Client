@@ -1,15 +1,28 @@
 {{yield}}
-<div class="menu">
+{{!--<div class="menu">
 
 	<div class="dropdown">
  		<div class="dropdown-container">
     		<p class="dropdown-button">Menu</p>
 			<ul class="dropdown-menu dropdown-select">
 				{{#each info in infos}}
-      				<li>{{info.name}}</li>
+      				<li>{{#link-to 'tour_info' info}}{{info.name}}{{/link-to}}</li>
       			{{/each}}
     		</ul>
   		</div>
 	</div>
 
+</div>--}}
+
+<div class="tour_info_menu">
+<ul class="accordion">
+	<li>
+		<a href="javascript:void(0)" class="js-accordion-trigger">Menu</a>
+		<ul class="submenu">
+			{{#each info in infos}}
+				<li>{{#link-to 'tour_info' info}}{{info.name}}{{/link-to}}</li>
+      		{{/each}}
+      	</ul>
+    </li>
+</ul>
 </div>

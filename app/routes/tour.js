@@ -27,13 +27,11 @@ export default Ember.Route.extend({
 
 			var activeWindow;
 
-			Ember.$(".loading").show();
+			//Ember.$(".loading").show();
 			
 			var map = null;
 
 			var bounds = new google.maps.LatLngBounds();
-
-			console.log(bounds);
 
 			Ember.$(".overview-map").empty();
 
@@ -52,7 +50,6 @@ export default Ember.Route.extend({
 					});
 
 					stop.then(function(){
-
 
 						if (stop.get('content.intro')===false) {
 							var stopCords = new google.maps.LatLng(
@@ -101,7 +98,7 @@ export default Ember.Route.extend({
     		};
 
 			map = new google.maps.Map(container[0], options);
-			Ember.$(".loading").hide();
+			//Ember.$(".loading").hide();
 
 		}
 

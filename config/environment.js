@@ -43,8 +43,8 @@ module.exports = function(environment) {
     'default-src': "'none'",
     'script-src': "'self' 'unsafe-eval' https://cdn.mxpnl.com http://*.googleapis.com https://*.googleapis.com http://maps.gstatic.com https://maps.gstatic.com", // Allow scripts from https://cdn.mxpnl.com
     'font-src': "'self' http://fonts.gstatic.com https://fonts.gstatic.com", // Allow fonts to be loaded from http://fonts.gstatic.com
-    'connect-src': "'self' http://172.16.83.129:8000 http://maps.gstatic.com https://maps.gstatic.com", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
-    'img-src': "'self' http://csi.gstatic.com https://csi.gstatic.com http://*.googleapis.com http://maps.gstatic.com https://*.googleapis.com https://maps.gstatic.com http://172.16.83.129:8000",
+    'connect-src': "'self' http://172.16.83.143:8000 http://maps.gstatic.com https://maps.gstatic.com", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
+    'img-src': "*",
     'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com http://maps.gstatic.com https://maps.gstatic.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
     'media-src': "'self'"
   };

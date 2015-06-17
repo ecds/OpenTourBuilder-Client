@@ -1,27 +1,24 @@
-{{outlet}}
 <div class="tour-stop">
 
-
-		<nav class="tour-stop-nav">
-			<div class="stop-nav-left">
-				<div class="tour-home-button">
-					{{#link-to 'tour' model.tour.slug}}<button>Home</button>{{/link-to}}
+	<header class="centered-navigation" role="banner">
+		<div class="centered-navigation-wrapper">
+			<nav role="navigation">
+				<ul id="js-centered-navigation-menu" class="centered-navigation-menu show tour-stop-nav">
+					<li class="nav-link">{{#link-to 'tour' model.tour.slug}}Home{{/link-to}}</li>
+					<li class="nav-link title">
+						{{model.name}}
+					</li>
+				</ul>
+				<div class="stop-nav-right">
+					{{#if model.geospatial}}
+						<button {{action "showDirections" model.lat model.lng model.park_lat model.park_lng}} class="map-preview">
+							<img {{bind-attr src=model.map_image}}>
+						</button>
+					{{/if}}
 				</div>
-				<div class="tour-title">
-					<h1>{{model.tour.name}}</h1>
-				</div>
-				<div class="stop-name">
-					<h1>{{model.name}}</h1>
-				</div>
-			</div>
-			<div class="stop-nav-right">
-				{{#if model.geospatial}}
-				<button {{action "showDirections" model.lat model.lng model.park_lat model.park_lng}} class="map-preview">
-					<img {{bind-attr src=model.map_image}}>
-				</button>
-				{{/if}}
-			</div>
-		</nav>
+			</nav>
+		</div>
+	</header>
 
 
 	<section>

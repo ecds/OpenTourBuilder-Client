@@ -4,5 +4,5 @@ export default DS.Model.extend({
  	name: DS.attr('string'),
 	tour: DS.belongsTo('tourDetail'),
 	map_image: DS.attr('string'),
-	position: DS.attr('number')
+	position: DS.attr('number'),
 });
