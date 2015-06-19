@@ -22,35 +22,33 @@
 
 
 	<section>
-		{{#if model.video_embed}}
-		{{/if}}
-		<div class="swiper-container">
-			<!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-        <!-- Slides -->
-        {{#each image in model.images}}
-        <div class="swiper-slide">
-        	<img {{bind-attr src=image.original_image}} />
-        </div>
-        {{/each}}
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-    
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-			{{!--<ul>
-			{{# if model.images}}
-				<li>{{#each image in model.images}}{{image.image}}{{/each}}</li>
-			{{/if}}
-			</ul>--}}
-		</div>
 		
-		<article class="stop-article">{{{model.description}}}</article>
+		<article class="stop-article">
+
+			{{#if model.video_embed}}
+			{{/if}}
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+	    		<div class="swiper-wrapper">
+	        	<!-- Slides -->
+	        		{{#each image in model.images}}
+	        			<div class="swiper-slide">
+	        				{{image-modal image=image}}
+	        			</div>
+	        		{{/each}}
+	    		</div>
+	    		<!-- If we need pagination -->
+	    		<div class="swiper-pagination"></div>
+	    		<!-- If we need navigation buttons -->
+	    		<div class="swiper-button-prev"></div>
+	    		<div class="swiper-button-next"></div>
+	    		<!-- If we need scrollbar -->
+	    		<div class="swiper-scrollbar"></div>
+			</div>
+
+			{{{model.description}}}
+
+		</article>
 
 		{{#if model.geospatial}}
 			<div class="stop-directions">

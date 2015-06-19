@@ -598,7 +598,6 @@ nav.tour-overview {
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
     /* Center slide text vertically */
     display: -webkit-box;
     display: -ms-flexbox;
@@ -612,4 +611,8 @@ nav.tour-overview {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+}
+
+.centered-navigation-wrapper {
+	min-width: 100%;
 }

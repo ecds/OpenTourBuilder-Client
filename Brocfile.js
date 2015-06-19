@@ -17,8 +17,22 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+var funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
+
+var fancyboxImages = funnel('bower_components/fancybox/source', {
+	destDir: 'assets',
+});
+
 app.import('bower_components/js-cookie/src/js.cookie.js');
 app.import('bower_components/swiper/dist/js/swiper.min.js');
+app.import('bower_components/fancybox/source/jquery.fancybox.pack.js');
 app.import('bower_components/swiper/dist/css/swiper.min.css');
+app.import('bower_components/fancybox/source/jquery.fancybox.css');
 
-module.exports = app.toTree();
+module.exports = mergeTrees([
+	app.toTree(),
+	fancyboxImages
+],{
+	overwrite: true
+});

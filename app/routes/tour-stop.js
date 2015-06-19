@@ -19,8 +19,11 @@ export default Ember.Route.extend({
 			        slidesPerView: 1,
 			        paginationClickable: true,
 			        spaceBetween: 30,
-			        loop: true
+			        loop: true,
+			        //setWrapperSize: true
 			    });
+
+			    
 			});
 		},
 

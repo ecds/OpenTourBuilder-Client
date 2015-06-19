@@ -1,0 +1,10 @@
+{{modal}}
+<a {{bind-attr href=image.original_image}} {{bind-attr id=image.label}} class="fancybox" {{bind-attr title=image.title}}>
+	        				<picture>
+	        					<source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_thumb}} />
+
+	        					<source media="(min-width: 465px)" {{bind-attr srcset=image.tablet_thumb}} />
+
+	        					<img {{bind-attr src=image.phone_thumb}} />
+	        				</picture>
+	        				</a>
