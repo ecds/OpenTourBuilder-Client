@@ -11,8 +11,9 @@
 				</ul>
 				<div class="stop-nav-right">
 					{{#if model.geospatial}}
-						<button {{action "showDirections" model.lat model.lng model.park_lat model.park_lng}} class="map-preview">
+						<button {{action "showDirections" model.lat model.lng model.park_lat model.park_lng false}} class="map-preview">
 							<img {{bind-attr src=model.map_image}}>
+							<div class="details-button">Details</div>
 						</button>
 					{{/if}}
 				</div>
@@ -25,12 +26,18 @@
 		
 		<article class="stop-article">
 
-			{{#if model.video_embed}}
-			{{/if}}
 			<div class="swiper-container">
 				<!-- Additional required wrapper -->
 	    		<div class="swiper-wrapper">
 	        	<!-- Slides -->
+
+	        		{{#if model.video_embed}}
+	        			<div class="swiper-slide">
+                     		{{image-modal stop=model}}
+                		</div>
+                	{{/if}}
+
+
 	        		{{#each image in model.images}}
 	        			<div class="swiper-slide">
 	        				{{image-modal image=image}}
@@ -66,12 +73,41 @@
 						<h2>Location Services Disabled</h2>
 						<p>Sorry, we need to be able to access your location in order to display directions.</p>
 					</div>
-					<div class="map-canvas"></div>
-					<div class="fallback">
-						Approximate Address: <span class="address"></span>
-						<span class="address-warn"></span>
+
+
+					<div class="button-group">
+					  <label>
+					    <input type="radio" name="button-group" value="item" id="map-button" checked>
+					    <span class="button-group-item">Map</span>
+					  </label>
+					  <label>
+					    <input type="radio" name="button-group" value="other-item" id="directions-button">
+					    <span class="button-group-item">Directions</span>
+					  </label>
+					  {{#if model.direction_notes}}
+					  <label>
+					    <input type="radio" name="button-group" value="other-item" id="direction-notes-button">
+					    <span class="button-group-item">Notes</span>
+					  </label>
+					  {{/if}}
 					</div>
-					<div id="directions"></div>
+
+					<button id="reload-map-button" {{action "showDirections" model.lat model.lng model.park_lat model.park_lng true}} class="map-preview">Reload Map</button>
+
+					<div style="position:relative;">
+						
+						<div class="map-canvas"></div>
+
+						<div id="directions"><div class="fallback">
+							Approximate Address: <span class="address"></span>
+							<span class="address-warn"></span>
+						</div></div>
+
+						<div id="direction-notes">{{{model.direction_notes}}}</div>
+
+					</div>
+
+
 				</section>
 			</div>
 		{{/if}}

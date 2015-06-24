@@ -46,7 +46,8 @@ module.exports = function(environment) {
     'connect-src': "'self' http://172.16.83.143:8000 http://maps.gstatic.com https://maps.gstatic.com", // Allow data (ajax/websocket) from api.mixpanel.com and custom-api.local
     'img-src': "*",
     'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com http://maps.gstatic.com https://maps.gstatic.com", // Allow inline styles and loaded CSS from http://fonts.googleapis.com
-    'media-src': "'self'"
+    'media-src': "'self'",
+    'frame-src': "'self' https://www.youtube.com"
   };
 
   if (environment === 'production') {

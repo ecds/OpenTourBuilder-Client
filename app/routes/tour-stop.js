@@ -23,16 +23,40 @@ export default Ember.Route.extend({
 			        //setWrapperSize: true
 			    });
 
-			    
+			    Ember.$("#map-button").prop('checked', true);
+			    Ember.$("#directions-button").attr('checked', false);
+			    Ember.$("#direction-notes-button").attr('checked', false);
+				
+				Ember.$("#direction-notes-button").change(function(){
+					Ember.$('#directions').hide();
+					Ember.$('#direction-notes').show();
+				});
+
+				Ember.$("#directions-button").change(function(){
+					Ember.$('#direction-notes').hide();
+					Ember.$('#directions').show();
+				});
+
+				Ember.$("#map-button").change(function(){
+					Ember.$('#direction-notes').hide();
+					Ember.$('#directions').hide();
+				});
+
+				Ember.$(".details-button").hide();
+
 			});
 		},
 
 
-		showDirections: function(lat, lng, parkLat, parkLng){
+		showDirections: function(lat, lng, parkLat, parkLng, reload){
 			
-			Ember.$(".stop-article").toggle();
-			Ember.$(".stop-directions").toggle();
-			Ember.$("#directions").empty();
+			if (reload === false) {
+				Ember.$(".stop-article").toggle();
+				Ember.$(".stop-directions").toggle();
+				Ember.$(".details-button").toggle();
+				Ember.$('#direction-notes').hide();
+				Ember.$('#directions').hide();
+			}
 
 			var selectedMode = Cookies.get('selectedMode');
 
@@ -110,6 +134,7 @@ export default Ember.Route.extend({
                     	},function(results, status){
                     		Ember.$('.geoservice-warning').show();
                     		Ember.$('.fallback').show();
+                    		Ember.$('#reload-map-button').hide();
                     		if(status === google.maps.GeocoderStatus.OK){
                     			Ember.$("span.address").html(results[0].formatted_address);
                     		}

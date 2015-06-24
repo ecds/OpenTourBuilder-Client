@@ -4,18 +4,25 @@ export default Ember.Component.extend({
 
 
     modal: function() {
-    		var label = this.image.label;
 			Ember.run.scheduleOnce('afterRender', function() {		
 				Ember.$(function() {
-					Ember.$("#"+label).fancybox({
-						helpers: {
-							title: {
-								type: 'float'
-							}
-						}
-					});
-					
-			});
-    });
+
+					Ember.$(".fancybox").fancybox({
+
+        				beforeLoad: function() {
+            				var el, id = Ember.$(this.element).data('title-id');
+
+			            	if (id) {
+			                	el = Ember.$('#' + id);
+            
+            			    if (el.length) {
+			                    this.title = el.html();
+            			    }
+            			}
+        			}
+    			});
+			});			
+		});
+
 	}.property()
 });

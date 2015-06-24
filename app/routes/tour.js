@@ -73,7 +73,7 @@ export default Ember.Route.extend({
 							      map: map,
 							      icon: icon
 							 });
-		      				var mapEvent = google.maps.event.addListener(marker, 'click', function() {
+		      				google.maps.event.addListener(marker, 'click', function() {
 		      					// If there is already an info window, close it.
 		      					if(activeWindow != null) {
 		      						activeWindow.close();
