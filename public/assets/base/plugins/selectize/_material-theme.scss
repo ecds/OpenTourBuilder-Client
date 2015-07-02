@@ -1,0 +1,175 @@
+/**
+ * selectize.material.css (v$$version) - Material Theme
+*/
+
+@import "selectize";
+
+$selectize-color-item: $base-font-color;
+$selectize-color-item-text: $white;
+$selectize-color-item-active-text: $white;
+$selectize-color-item-border: $grey-200;
+$selectize-color-item-active: $blue;
+$selectize-color-item-active-border: $blue;
+$selectize-color-dropdown-border-top: transparent;
+$selectize-width-item-border: 1px;
+$selectize-caret-margin: 0 1px;
+
+$active-shadow: 0 10px 20px rgba(0,0,0, .19), 0 6px 6px rgba(0,0,0, .23);
+$passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
+
+.selectize-control {
+  &.multi {
+    .selectize-input {
+      &.has-items {
+        $padding-x: $selectize-padding-x - 3px;
+        padding-left: $padding-x;
+        padding-right: $padding-x;
+      }
+      &.disabled [data-value] {
+        color: #999;
+        text-shadow: none;
+        background: none;
+        @include selectize-box-shadow(none);
+
+        &, .remove {
+          border-color: #e6e6e6;
+        }
+        .remove {
+          background: none;
+        }
+      }
+      [data-value] {
+        text-shadow: 0 1px 0 rgba(0,51,83,0.3);
+        @include selectize-border-radius(3px);
+        @include selectize-vertical-gradient(#1da7ee, #178ee9);
+        @include selectize-box-shadow("0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03)");
+        &.active {
+          @include selectize-vertical-gradient(#008fd8, #0075cf);
+        }
+      }
+    }
+  }
+  &.single {
+    .selectize-input {
+      @include selectize-box-shadow(none);
+      @include selectize-vertical-gradient($white, $white);
+    }
+  }
+}
+
+.selectize-control.single .selectize-input {
+  border-color: $grey-400;
+  box-shadow: $passive-shadow;
+  
+  @include transition(box-shadow 0.4s ease);
+  
+  border-width: 1px;
+  border-radius: 0;
+  min-height:45px;
+  display:block !important;
+  max-width:99%;
+  
+  &>.item {
+    display: inline-block;
+    padding:10px;
+    min-height:28px;
+  }
+  
+  &:hover, &:active{
+    border-color: $blue;
+    
+    &+.selectize-dropdown{
+      border: 1px solid $blue;
+      border-top-color:$grey-200;
+    }
+  }
+  &:not(.selectize-dropdown){
+    &:after{
+      content: "\e89e";
+      color:$blue;
+      border:none;
+      font-size: 25px;
+      right: 12px;
+      top: 28%;
+      padding:0;
+      margin:0;
+      height: 25px;
+      width: 25px;
+      text-align: center;
+      
+      @include transition(transform 0.4s ease, color 0.3s ease);
+      
+      // From Material Icons
+      font-family: "Material-Design-Icons";
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  &.dropdown-active{
+    border-bottom-width: 0px;
+    box-shadow:$active-shadow;
+    
+    &:hover, &:active{
+      border-color: $grey-400;
+      
+      &+.selectize-dropdown{
+        border: 1px solid $grey-400;
+        border-top-color:$grey-200;
+      }
+    }
+    &+.selectize-dropdown{
+      box-shadow:$active-shadow;
+    }
+    
+    &:after{
+      // content: "\e89e";
+      color:$amber-700;
+      @include transform(rotateX(180deg));
+    }
+  }
+}
+
+.selectize-dropdown {
+  box-shadow: $passive-shadow;
+  background-color: $white;
+  @include transition(box-shadow 0.4s ease);
+  
+  &.single{
+    border: 1px solid $grey-400;
+    border-top-color:$grey-200;
+    border-radius:0;
+  }
+  
+  .optgroup-header {
+    background-color: $white;
+    color: $primary;
+    padding-top: $selectize-padding-dropdown-item-y + 2px;
+    font-weight: bold;
+    font-size: 0.85em;
+  }
+  .optgroup {
+    border-top: 1px solid $selectize-color-dropdown-border-top;
+    &:first-child {
+      border-top: 0 none;
+    }
+  }
+  [data-selectable] {
+    font-size:1.2em;
+    padding:10px;
+    
+    &:hover, &.active {
+      background: color-opacity($blue-200,0.2);
+    }
+    .highlight{
+      background:color-opacity($amber-200,0.5);
+    }
+  }
+}

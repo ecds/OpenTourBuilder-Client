@@ -21,7 +21,7 @@ var funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 
 var fancyboxImages = funnel('bower_components/fancybox/source', {
-	destDir: 'assets',
+  destDir: 'assets',
 });
 
 app.import('bower_components/js-cookie/src/js.cookie.js');
@@ -30,9 +30,21 @@ app.import('bower_components/fancybox/source/jquery.fancybox.pack.js');
 app.import('bower_components/swiper/dist/css/swiper.min.css');
 app.import('bower_components/fancybox/source/jquery.fancybox.css');
 
+// Font Awesome
+var fontAwesome = funnel('bower_components/font-awesome', {
+  destDir: 'assets/fontawesome',
+});
+
+// For Top Menu
+app.import('vendor/classie.js');
+app.import('vendor/menu.js');
+
+
+
 module.exports = mergeTrees([
-	app.toTree(),
-	fancyboxImages
+  app.toTree(),
+  fancyboxImages,
+  fontAwesome
 ],{
-	overwrite: true
+  overwrite: true
 });

@@ -1,0 +1,48 @@
+.tour-list{
+  background-color:$background-color;
+  display: block;
+  float:left;
+  width: 100%;
+  position: relative;
+
+  article{
+    background-color:$background-color;
+    display: block;
+    clear: both;
+    float:left;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    min-height: 50vh;
+
+    &:nth-child(even){
+      background-color:invert($background-color);
+    }
+
+    .container{
+      width: 100%;
+      position: relative;
+      z-index: 0;
+
+      header,section{
+        @include wrapper;
+      }
+    }
+
+    &.stuck{
+      overflow: hidden;
+      z-index: 1;
+
+      .container{
+        position: fixed;
+        min-height: 100%;
+        z-index: 0;
+        @include backface-visibility(hidden);
+      }
+
+      &.stuck-bottom .container{
+        bottom:0;
+      }
+    }
+  }
+}

@@ -1,107 +1,124 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 /* global google */
+/* global menuInit */
+/* global Swiper */
 
 export default Ember.Route.extend({
-	model: function(params){
-		// If/when we change to Rails we will need to change this to the following
-		// return this.store.find('tourDetail', {slug: params.slug});
-		return this.store.find('tourDetail', params.slug);
-	},
+  model: function(params){
+    // If/when we change to Rails we will need to change this to the following
+    // return this.store.find('tourDetail', {slug: params.slug});
+    return this.store.find('tourDetail', params.slug);
+  },
 
-	actions: {
+  actions: {
+    didTransition: function() {
+      Ember.run.schedule('afterRender', function() {
+        menuInit();
+        //
+        // new Swiper('.swiper-container', {
+        //       pagination: '.swiper-pagination',
+        //       nextButton: '.swiper-button-next',
+        //       prevButton: '.swiper-button-prev',
+        //       slidesPerView: 1,
+        //       paginationClickable: true,
+        //       spaceBetween: 30,
+        //       loop: true,
+        //       //setWrapperSize: true
+        //   });
+      });
+    },
+    toggleList: function(){
+      Ember.$(".stop-list").toggle();
+      Ember.$("button#stop-list-button").addClass("active").prop('disabled', true);
+      Ember.$("button#map-overview-button").removeClass("active").prop('disabled', false);
+      Ember.$(".overview-map").toggle();
+    },
 
-		toggleList: function(){
-			Ember.$(".stop-list").toggle();
-			Ember.$("button#stop-list-button").addClass("active").prop('disabled', true);
-			Ember.$("button#map-overview-button").removeClass("active").prop('disabled', false);
-			Ember.$(".overview-map").toggle();
-		},
+    mapTour: function initializeMap(){
 
-		mapTour: function initializeMap(){
+      Ember.$(".stop-list").toggle();
+      Ember.$(".overview-map").toggle();
+      Ember.$("button#stop-list-button").removeClass("active").prop('disabled', false);
+      Ember.$("button#map-overview-button").addClass("active").prop('disabled', true);
 
-			Ember.$(".stop-list").toggle();
-			Ember.$(".overview-map").toggle();
-			Ember.$("button#stop-list-button").removeClass("active").prop('disabled', false);
-			Ember.$("button#map-overview-button").addClass("active").prop('disabled', true);
+      var activeWindow;
 
-			var activeWindow;
+      //Ember.$(".loading").show();
 
-			//Ember.$(".loading").show();
-			
-			var map = null;
+      var map = null;
 
-			var bounds = new google.maps.LatLngBounds();
+      var bounds = new google.maps.LatLngBounds();
 
-			Ember.$(".overview-map").empty();
+      Ember.$(".overview-map").empty();
 
-			var tour = DS.PromiseObject.create({
-				promise: this.store.find('tourDetail', this.currentModel.id)
-			});
+      var tour = DS.PromiseObject.create({
+        promise: this.store.find('tourDetail', this.currentModel.id)
+      });
 
-			tour.then(function(){
+      tour.then(function(){
 
-				var stops = tour.get('content.stop_ids').get('content.currentState');
+        var stops = tour.get('content.stop_ids').get('content.currentState');
 
-				Ember.$.each(stops, function(index, value){
-				
-					var stop = DS.PromiseObject.create({
-						promise: this.store.find('tourStopDetail', value.id)
-					});
+        Ember.$.each(stops, function(index, value){
 
-					stop.then(function(){
+          var stop = DS.PromiseObject.create({
+            promise: this.store.find('tourStopDetail', value.id)
+          });
 
-						if (stop.get('content.intro')===false) {
-							var stopCords = new google.maps.LatLng(
-					      		stop.get('content.lat'),
-					      		stop.get('content.lng')
-		      				);
+          stop.then(function(){
 
-		      				bounds.extend(stopCords);
+            if (stop.get('content.intro')===false) {
+              var stopCords = new google.maps.LatLng(
+                    stop.get('content.lat'),
+                    stop.get('content.lng')
+                  );
 
-		      				var contentString = '<h1>' + stop.get('content.name') + '</h1>' +
-		      									'<article>' + stop.get('content.metadescription') + '</article>';
+                  bounds.extend(stopCords);
 
-		      				var infowindow = new google.maps.InfoWindow({
-      							content: contentString
-  							});
+                  var contentString = '<h1>' + stop.get('content.name') + '</h1>' +
+                            '<article>' + stop.get('content.metadescription') + '</article>';
 
-  							var icon = '/assets/images/markers/marker' + stop.get('content.position') + '.png';
+                  var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
 
-		      				var marker = new google.maps.Marker({
-							      position: stopCords,
-							      map: map,
-							      icon: icon
-							 });
-		      				google.maps.event.addListener(marker, 'click', function() {
-		      					// If there is already an info window, close it.
-		      					if(activeWindow != null) {
-		      						activeWindow.close();
-		      					}
-    							infowindow.open(map,marker);
-    							activeWindow = infowindow;
-  							});
-		      			}
+                var icon = '/assets/images/markers/marker' + stop.get('content.position') + '.png';
 
-		      			map.fitBounds(bounds);
+                  var marker = new google.maps.Marker({
+                    position: stopCords,
+                    map: map,
+                    icon: icon
+               });
+                  google.maps.event.addListener(marker, 'click', function() {
+                    // If there is already an info window, close it.
+                    if(activeWindow != null) {
+                      activeWindow.close();
+                    }
+                  infowindow.open(map,marker);
+                  activeWindow = infowindow;
+                });
+                }
 
-					});
+                map.fitBounds(bounds);
 
-				});
-			});
+          });
 
-			var container = Ember.$(".overview-map");
+        });
+      });
 
-			var options = {
-      			// zoom: 12,
-      			// mapTypeId: google.maps.MapTypeId.ROADMAP
-    		};
+      var container = Ember.$(".overview-map");
 
-			map = new google.maps.Map(container[0], options);
-			//Ember.$(".loading").hide();
+      var options = {
+            // zoom: 12,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
 
-		}
+      map = new google.maps.Map(container[0], options);
+      //Ember.$(".loading").hide();
 
-	}
+    }
+
+  }
 
 });

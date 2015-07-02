@@ -1,14 +1,36 @@
-@import "neat-helpers"; // or "../neat/neat-helpers" when not in Rails
+@import 'bower_components/neat/app/assets/stylesheets/neat';
 
 // Neat Overrides
-// $column: 90px;
-// $gutter: 30px;
-// $grid-columns: 12;
-// $max-width: em(1088);
+$column: 100% / 18;
+$gutter: 0.75em;
+$grid-columns: 4;
+$max-width: none;
 
-// Neat Breakpoints
+// Breakpoints
 $medium-screen: em(640);
-$large-screen: em(860);
+$medium-2-screen: em(720);
+
+$large-screen: em(888);
+$large-2-screen: em(984);
+
+$huge-screen: em(1392);
+$huge-2-screen: em(1872);
+
+$massive-screen: em(2496);
+$massive-2-screen: em(4104);
+
+$small-screen-up-max: new-breakpoint(max-width em(400) 4);
 
 $medium-screen-up: new-breakpoint(min-width $medium-screen 4);
+$medium-2-screen-up: new-breakpoint(min-width $medium-2-screen 8);
+
 $large-screen-up: new-breakpoint(min-width $large-screen 8);
+$large-2-screen-max: new-breakpoint(max-width $large-2-screen 16);
+$large-2-screen-up: new-breakpoint(min-width $large-2-screen 16);
+
+$huge-screen-up: new-breakpoint(min-width $huge-screen 16);
+$huge-screen-max: new-breakpoint(max-width $huge-screen 16);
+$huge-2-screen-up: new-breakpoint(min-width $huge-2-screen 16);
+
+$massive-screen-up: new-breakpoint(min-width $massive-screen 16);
+$massive-2-screen-up: new-breakpoint(min-width $massive-2-screen 16);

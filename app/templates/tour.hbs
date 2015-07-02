@@ -1,77 +1,81 @@
-<header class="centered-navigation" role="banner">
-  <div class="centered-navigation-wrapper">
-    <nav role="navigation">
-      <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
-        <li class="nav-link">{{#link-to 'index' }}Back{{/link-to}}</li>
-
-        <li class="nav-link title">
-          {{model.name}}
-        </li>
-
-        <li class="nav-link more"><a href="javascript:void(0)">Menu</a>
-          <ul class="submenu">
-            {{#each info in model.info_ids}}
-            	<li>{{#link-to 'tour_info' info}}{{info.name}}{{/link-to}}</li>
-            {{/each}}
-
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-
-<div class="tour-detail">
-
-	<section class="stop-list">
-		{{#each stop in model.stop_ids}}
-			
-				{{#if stop.intro}}
-					<div class="stops">
-					{{#link-to 'tour_stop' stop}}
-						<div class="intro-link">
-							<h2>{{stop.name}}</h2>
-						</div>
-						{{/link-to}}
-					</div>
-
-					<div class="stop-header">
-						<h2>Tour Stops</h2>
-					</div>
-
-				{{else}}
-					{{#link-to 'tour_stop' stop}}
-					<div class="stops">
-						<div class="thumbnail">
-							{{#if geospatial}}
-								<img {{bind-attr src=stop.map_image}}/>
-							{{else}}
-								{{#each image in stop.images}}
-									<img {{bind-attr src=image.image_preview}}/>
-								{{/each}}
-							{{/if}}
-						</div>
-						<div class="stop-link">
-							<h2>{{stop.position}}. {{stop.name}}</h2>
-						</div>
-					</div>
-					{{/link-to}}
-				{{/if}}
-				
-		{{/each}}
-	</section>
-	
-	<div class="overview-map">
-		{{overview-map}}
-	</div>
-
-	<nav class="tour-overview">
-		{{toggle-list action="toggleList"}}
-		{{toggle-map action="mapTour"}}
-	</nav>
-	<section>{{outlet}}</section>
+<div class="menu-wrap">
+  <nav class="menu-top">
+    <div class="icon-list">
+      <a href="#"><span class="fa fa-fw fa-star-o"></span></a>
+      <a href="#"><span class="fa fa-fw fa-bell-o"></span></a>
+      <a href="#"><span class="fa fa-fw fa-envelope-o"></span></a>
+      <a href="#"><span class="fa fa-fw fa-comment-o"></span></a>
+    </div>
+  </nav>
+  <nav class="menu-side">
+    {{#each stop in model.stop_ids}}
+        {{#if stop.intro}}
+          <a href="#"><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
+        {{else}}
+          <a href="#"><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
+        {{/if}}
+    {{/each}}
+  </nav>
 </div>
 
+<button class="menu-button" id="open-button">Open Menu</button>
+<div class="content-wrap">
 
+  {{peakaboo-header model=model}}
+
+  <div class="tour-detail">
+
+    <section class="tour-list">
+      {{#each stop in model.stop_ids}}
+
+          {{#if stop.intro}}
+            <article class="tour-intro tour-section">
+              <div  class="container">
+                <header>
+                    <h2 class="tour-section-header">{{stop.name}}</h2>
+                </header>
+                <section>
+                  {{{stop.description}}}
+                </section>
+              </div>
+            </article>
+
+          {{else}}
+            {{!-- {{#link-to 'tour_stop' stop}} --}}
+            <article class="tour-stop tour-section">
+              <div  class="container">
+                <header>
+                  <div class="tour-section-thumbnail">
+                    {{#if geospatial}}
+                      <img {{bind-attr src=stop.map_image}}/>
+                    {{else}}
+                      {{#each image in stop.images}}
+                        <img {{bind-attr src=image.image_preview}}/>
+                      {{/each}}
+                    {{/if}}
+                  </div>
+                  <h2 class="tour-section-header">{{stop.position}}. {{stop.name}}</h2>
+                </header>
+
+                <section>
+                  {{tour-slider stop=stop}}
+                  {{{stop.description}}}
+                </section>
+              </div>
+            </article>
+          {{/if}}
+
+      {{/each}}
+    </section>
+
+    <div class="overview-map">
+      {{overview-map}}
+    </div>
+
+    {{!-- <nav class="tour-overview">
+      {{toggle-list action="toggleList"}}
+      {{toggle-map action="mapTour"}}
+    </nav>
+    <section>{{outlet}}</section> --}}
+  </div>
+</div>

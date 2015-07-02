@@ -1,0 +1,81 @@
+header.peakaboo{
+  background:$teal;
+  height: 15em;
+  padding: 8em 0 0;
+
+  .wrapper{
+    @include container;
+  }
+
+  .header-title{
+    @extend h1;
+    color: $white;
+
+    .section-title{
+
+      &:after{
+        @include material-icon;
+        content:"\e89b";
+        bottom: -6px;
+        left: 6px;
+        display: inline-block;
+        position: relative;
+      }
+
+    }
+
+    .chapter-title{
+
+    }
+  }
+
+  &[data-page="main"]:not(.mini) .header-title{
+    .chapter-title{
+      display:none;
+    }
+    .section-title{
+      &:after{
+        content:'';
+      }
+    }
+  }
+
+  &.p-hidden{
+    .header-title{
+      color: transparent;
+    }
+  }
+
+  &.mini{
+    height:auto;
+    padding:0px;
+    position:fixed;
+    top: 0%;
+    display:none;
+    left:0;
+    width: 100%;
+    z-index:100;
+    box-shadow: none;
+
+    &.shadow{
+      @include transition(box-shadow 1s ease, left 0.3s);
+      box-shadow: 0 4px 6px 1px rgba(50, 50, 50, 0.16);
+    }
+
+    .header-title{
+      @extend h4;
+      .section-title{
+
+        @include media($small-screen-up-max) {
+          display:none;
+        }
+
+        &:after{
+          bottom:-4px;
+          left:4px;
+        }
+      }
+    }
+
+  }
+}
