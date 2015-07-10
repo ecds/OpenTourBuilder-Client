@@ -11,6 +11,8 @@ function drawMap(stop){
         lat = stop.get('lat'),
         lng = stop.get('lng');
 
+    var $directions = Ember.$(elem + " .directions");
+
     Ember.$(elem).val(selectedMode);
     Ember.$(".selectize-input").html(selectedMode);
 
@@ -24,7 +26,7 @@ function drawMap(stop){
       Ember.$(".selectize-input").html(selectedMode);
       Ember.$("[data-value="+selectedMode+"]").addClass("selected active");
       //
-      Ember.$(".loading").show();
+      $directions.addClass('loading');
 
       var container = Ember.$(elem+" .map-canvas");
 
@@ -53,7 +55,7 @@ function drawMap(stop){
         function successCallback() {}
 
         function errorCallback() {
-            Ember.$(".loading").hide();
+          $directions.removeClass('loading');
           var marker = new google.maps.Marker({
             position: stop,
             map: map,
@@ -116,7 +118,7 @@ function drawMap(stop){
               directionsDisplay.setPanel(list);
 
               // Hide the loading indicator.
-              Ember.$(".loading").hide();
+              $directions.removeClass('loading');
 
               // Show mode selector.
               Ember.$(".selectize-control").show();

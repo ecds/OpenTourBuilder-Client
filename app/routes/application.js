@@ -19,11 +19,17 @@ export default Ember.Route.extend({
        },
 
        openStopMap: function(stop) {
-           console.log(stop)
-           var anchor = "#"+stop.get("slug");
-           var $elem = Ember.$(anchor);
+
+           var slug = stop.get('slug'),
+               elem = "#"+slug,
+               $elem = Ember.$(elem),
+               $directions = Ember.$(elem+" .direction-list .adp");
+
            $elem.toggleClass('show-directions');
-           drawMap(stop);
+
+           if($directions.length<=0){
+             drawMap(stop);
+           }
        }
    }
 });

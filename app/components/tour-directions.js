@@ -14,7 +14,6 @@ export default Ember.Component.extend({
             selectedMode = "WALKING";
           }
           Cookies.set('selectedMode', selectedMode);
-          var elem = $this.parents('article').attr('id');
           $this.siblings('.selectize-control').children('.selectize-input').html(selectedMode);
         });
   },

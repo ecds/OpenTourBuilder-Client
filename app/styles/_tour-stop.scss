@@ -135,7 +135,7 @@ $stop-min-height:80vh;
 
     &.stuck-bottom{
       &>.container{
-        bottom:0;
+        bottom:30px;
       }
 
       &+article:not(.stuck){
@@ -163,6 +163,35 @@ $stop-min-height:80vh;
     width:100%;
     z-index: 50;
     @include transition(right 0.5s ease);
+
+
+    &{
+      .map-canvas, .direction-list{
+        &::after{
+          content: '';
+          display: block;
+          width: 100%;
+          position: absolute;
+          height: 100%;
+          background:url('http://www.hitlights.com/skin/frontend/default/MAG090198/images/loader.gif');
+          background-position: center;
+          text-align: center;
+          padding-top: 40%;
+          z-index: -1;
+          opacity: 0;
+          @include transition(opacity 0.2s, z-index 0.2s);
+        }
+      }
+    }
+
+    &.loading{
+      .map-canvas, .direction-list{
+        &::after{
+          opacity: 0.75;
+          z-index: 10;
+        }
+      }
+    }
 
     .selectize-control {
       display: inline-block;

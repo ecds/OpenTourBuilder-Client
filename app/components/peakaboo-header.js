@@ -42,7 +42,7 @@ export default Ember.Component.extend({
         var clearance = 200;
         var $article = Ember.$('.tour-list>article:not(.stuck)').first();
         var elemTop = $article.offset().top;
-        var elemBottom = elemTop + $article.height()+200;
+        var elemBottom = elemTop + $article.height()+clearance;
 
         var index = $article.index();
         var index_from_qs = parseInt(location.search.replace('?stop=',''));
@@ -66,7 +66,7 @@ export default Ember.Component.extend({
           $article.css({'height': $article.height()});
           $article.addClass('stuck').addClass('stuck-bottom');
           if($article.height()>$window.height()){
-            $article.children('.container').css({'bottom':'200px'});
+            $article.children('.container').css({'bottom':clearance});
           }
         }
 

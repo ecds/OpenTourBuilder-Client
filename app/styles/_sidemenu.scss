@@ -39,7 +39,7 @@ $menu_width:300px;
 .menu-button {
   position: fixed;
   z-index: 1000;
-  margin: 1em;
+  margin: 0.15em 0.25em;
   padding: 0;
   width: 2.5em;
   height: 2.25em;
@@ -60,8 +60,9 @@ $menu_width:300px;
     content: '';
   }
 
-  &:hover {
+  &:hover, &focus {
     opacity: 0.6;
+    background-color: $white;
   }
 }
 
@@ -146,7 +147,7 @@ $menu_width:300px;
       opacity: 1;
     }
     .menu-button{
-      @include transform(translate3d($menu_width,60px,0));
+      @include transform(translate3d($menu_width,0,0));
     }
     .content-wrap{
       top:60px;

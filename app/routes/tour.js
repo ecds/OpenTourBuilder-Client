@@ -19,10 +19,10 @@ export default Ember.Route.extend({
 
         if(parseInt(stop_number)){
           var elem = Ember.$('.tour-section')
-          
+
           if(elem[parseInt(stop_number)]){
             elem = elem[parseInt(stop_number)]
-            Ember.$('body').animate({scrollTop:Ember.$(elem).offset().top-80},500);
+            Ember.$('body').animate({scrollTop:Ember.$(elem).offset().top-80},0);
           }
         }
 
