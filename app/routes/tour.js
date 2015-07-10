@@ -1,8 +1,6 @@
 import Ember from 'ember';
-import DS from 'ember-data';
-/* global google */
 /* global menuInit */
-/* global Swiper */
+
 
 export default Ember.Route.extend({
   model: function(params){
@@ -13,19 +11,21 @@ export default Ember.Route.extend({
 
   actions: {
     didTransition: function() {
+
+      var stop_number = this.controller.get('stop');
+
       Ember.run.schedule('afterRender', function() {
         menuInit();
-        //
-        // new Swiper('.swiper-container', {
-        //       pagination: '.swiper-pagination',
-        //       nextButton: '.swiper-button-next',
-        //       prevButton: '.swiper-button-prev',
-        //       slidesPerView: 1,
-        //       paginationClickable: true,
-        //       spaceBetween: 30,
-        //       loop: true,
-        //       //setWrapperSize: true
-        //   });
+
+        if(parseInt(stop_number)){
+          var elem = Ember.$('.tour-section')
+          
+          if(elem[parseInt(stop_number)]){
+            elem = elem[parseInt(stop_number)]
+            Ember.$('body').animate({scrollTop:Ember.$(elem).offset().top-80},500);
+          }
+        }
+
       });
     },
     toggleList: function(){
@@ -33,92 +33,7 @@ export default Ember.Route.extend({
       Ember.$("button#stop-list-button").addClass("active").prop('disabled', true);
       Ember.$("button#map-overview-button").removeClass("active").prop('disabled', false);
       Ember.$(".overview-map").toggle();
-    },
-
-    mapTour: function initializeMap(){
-
-      Ember.$(".stop-list").toggle();
-      Ember.$(".overview-map").toggle();
-      Ember.$("button#stop-list-button").removeClass("active").prop('disabled', false);
-      Ember.$("button#map-overview-button").addClass("active").prop('disabled', true);
-
-      var activeWindow;
-
-      //Ember.$(".loading").show();
-
-      var map = null;
-
-      var bounds = new google.maps.LatLngBounds();
-
-      Ember.$(".overview-map").empty();
-
-      var tour = DS.PromiseObject.create({
-        promise: this.store.find('tourDetail', this.currentModel.id)
-      });
-
-      tour.then(function(){
-
-        var stops = tour.get('content.stop_ids').get('content.currentState');
-
-        Ember.$.each(stops, function(index, value){
-
-          var stop = DS.PromiseObject.create({
-            promise: this.store.find('tourStopDetail', value.id)
-          });
-
-          stop.then(function(){
-
-            if (stop.get('content.intro')===false) {
-              var stopCords = new google.maps.LatLng(
-                    stop.get('content.lat'),
-                    stop.get('content.lng')
-                  );
-
-                  bounds.extend(stopCords);
-
-                  var contentString = '<h1>' + stop.get('content.name') + '</h1>' +
-                            '<article>' + stop.get('content.metadescription') + '</article>';
-
-                  var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
-
-                var icon = '/assets/images/markers/marker' + stop.get('content.position') + '.png';
-
-                  var marker = new google.maps.Marker({
-                    position: stopCords,
-                    map: map,
-                    icon: icon
-               });
-                  google.maps.event.addListener(marker, 'click', function() {
-                    // If there is already an info window, close it.
-                    if(activeWindow != null) {
-                      activeWindow.close();
-                    }
-                  infowindow.open(map,marker);
-                  activeWindow = infowindow;
-                });
-                }
-
-                map.fitBounds(bounds);
-
-          });
-
-        });
-      });
-
-      var container = Ember.$(".overview-map");
-
-      var options = {
-            // zoom: 12,
-            // mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-      map = new google.maps.Map(container[0], options);
-      //Ember.$(".loading").hide();
-
     }
-
   }
 
 });

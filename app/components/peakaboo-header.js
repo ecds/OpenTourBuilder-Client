@@ -44,6 +44,24 @@ export default Ember.Component.extend({
         var elemTop = $article.offset().top;
         var elemBottom = elemTop + $article.height()+200;
 
+        var index = $article.index();
+        var index_from_qs = parseInt(location.search.replace('?stop=',''));
+
+        if(isNaN(index_from_qs) === false && index===0){
+          var href = location.href.replace(location.search,'');
+          window.history.pushState({},"", href);
+        }
+
+        else if(isNaN(index_from_qs) === true && index === 1){
+          var href = location.href+'?stop='+index;
+          window.history.pushState({},"", href);
+        }
+
+        else if(isNaN(index_from_qs) === false && index_from_qs!==index){
+          var href = location.href.replace(location.search,'?stop='+index);
+          window.history.pushState({},"", href);
+        }
+
         if((docViewBottom > elemBottom ) && (docViewTop >= elemTop) ){
           $article.css({'height': $article.height()});
           $article.addClass('stuck').addClass('stuck-bottom');

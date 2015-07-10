@@ -1,0 +1,42 @@
+// overview-map
+
+$overview-map-height: calc( 100vh - 10em);
+
+#map-overview{
+  min-height: $overview-map-height;
+}
+
+.tour-map{
+
+  ol {
+    @extend %circle-ol;
+    padding-top: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    li{
+      display: inline-block;
+      width: auto;
+      padding-right: 2em;
+
+      &:before{
+        margin-top: -0.25em;
+      }
+    }
+  }
+
+  .overview-map{
+    background-color:$grey-300;
+    display: block;
+    float:left;
+    width: 100%;
+    position: relative;
+    min-height: $overview-map-height;
+
+    #map{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+  }
+}

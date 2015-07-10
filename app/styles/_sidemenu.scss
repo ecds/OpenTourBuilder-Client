@@ -9,7 +9,7 @@ $menu_width:300px;
   left:0;
   top:0;
   @include transition(top 0.3s, left 0.3s);
-  z-index: 5;
+  z-index: 15;
   position: relative;
 
   .content {
@@ -157,5 +157,9 @@ $menu_width:300px;
       opacity: 1;
       @include transition(opacity 0.3s);
       @include transform(translate3d(0,0,0));
+    }
+
+    .tour-list article.stuck .container{
+      left: $menu_width;
     }
 }

@@ -1,10 +1,11 @@
 {{yield}}
-{{#each stop in stops}}
-	{{#unless stop.intro}}
-		<h2>{{stop.name}}</h2>
-	{{/unless}}
-{{/each}}
-
-<section>
-<div class="overview-map"></div>
+<ol>
+  {{#each stop in model.stop_ids}}
+    {{#unless stop.intro}}
+      <li>{{stop.name}}</li>
+    {{/unless}}
+  {{/each}}
+</ol>
+<section class="overview-map">
+  <div id="map"></div>
 </section>

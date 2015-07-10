@@ -60,24 +60,24 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
 .selectize-control.single .selectize-input {
   border-color: $grey-400;
   box-shadow: $passive-shadow;
-  
+
   @include transition(box-shadow 0.4s ease);
-  
+
   border-width: 1px;
   border-radius: 0;
   min-height:45px;
   display:block !important;
   max-width:99%;
-  
+
   &>.item {
     display: inline-block;
     padding:10px;
     min-height:28px;
   }
-  
+
   &:hover, &:active{
     border-color: $blue;
-    
+
     &+.selectize-dropdown{
       border: 1px solid $blue;
       border-top-color:$grey-200;
@@ -85,7 +85,7 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
   }
   &:not(.selectize-dropdown){
     &:after{
-      content: "\e89e";
+      content: "\f078";
       color:$blue;
       border:none;
       font-size: 25px;
@@ -96,11 +96,11 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
       height: 25px;
       width: 25px;
       text-align: center;
-      
+
       @include transition(transform 0.4s ease, color 0.3s ease);
-      
+
       // From Material Icons
-      font-family: "Material-Design-Icons";
+      font-family: "FontAwesome";
       speak: none;
       font-style: normal;
       font-weight: normal;
@@ -116,10 +116,10 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
   &.dropdown-active{
     border-bottom-width: 0px;
     box-shadow:$active-shadow;
-    
+
     &:hover, &:active{
       border-color: $grey-400;
-      
+
       &+.selectize-dropdown{
         border: 1px solid $grey-400;
         border-top-color:$grey-200;
@@ -128,7 +128,7 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
     &+.selectize-dropdown{
       box-shadow:$active-shadow;
     }
-    
+
     &:after{
       // content: "\e89e";
       color:$amber-700;
@@ -141,13 +141,13 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
   box-shadow: $passive-shadow;
   background-color: $white;
   @include transition(box-shadow 0.4s ease);
-  
+
   &.single{
     border: 1px solid $grey-400;
     border-top-color:$grey-200;
     border-radius:0;
   }
-  
+
   .optgroup-header {
     background-color: $white;
     color: $primary;
@@ -164,7 +164,7 @@ $passive-shadow: 0 5px 4px 0px rgba(50, 50, 50, 0.1);
   [data-selectable] {
     font-size:1.2em;
     padding:10px;
-    
+
     &:hover, &.active {
       background: color-opacity($blue-200,0.2);
     }

@@ -1,5 +1,7 @@
+$main-header-color:$teal !default;
+
 header.peakaboo{
-  background:$teal;
+  background:$main-header-color;
   height: 15em;
   padding: 8em 0 0;
 
