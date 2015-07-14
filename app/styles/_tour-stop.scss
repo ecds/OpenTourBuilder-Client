@@ -37,9 +37,18 @@ $stop-min-height:80vh;
     background-color:$background-color;
     @include transition(box-shadow 1s ease, background-color 1s ease);
 
-    &:first-child .container header{
-      background-color: $intro-header-background-color;
-      color: $intro-header-color;
+    &.tour-intro{
+      .container header{
+        background-color: $intro-header-background-color;
+        color: $intro-header-color;
+        padding: 0 4.5rem;
+      }
+      .description{
+          @include container;
+          width: auto;
+          padding: 0;
+          padding-top: 1em;
+      }
     }
 
     .container{
@@ -61,7 +70,7 @@ $stop-min-height:80vh;
         color: $header-color;
         $thumbnail_width: 7em;
 
-        .prefix, .tour-section-thumbnail, .tour-section-header{
+        .prefix, .tour-section-thumbnail, .tour-section-heading{
           display: table-cell;
         }
 
@@ -110,7 +119,7 @@ $stop-min-height:80vh;
         }
       }
 
-      .tour-section-header{
+      .tour-section-heading{
         vertical-align: middle;
         padding-left: 10px;
       }
@@ -135,7 +144,7 @@ $stop-min-height:80vh;
 
     &.stuck-bottom{
       &>.container{
-        bottom:30px;
+        bottom:2.25em;
       }
 
       &+article:not(.stuck){
@@ -173,7 +182,7 @@ $stop-min-height:80vh;
           width: 100%;
           position: absolute;
           height: 100%;
-          background:url('http://www.hitlights.com/skin/frontend/default/MAG090198/images/loader.gif');
+          background:url('/assets/images/loader.gif');
           background-position: center;
           text-align: center;
           padding-top: 40%;
@@ -253,7 +262,6 @@ $stop-min-height:80vh;
       width: 100%;
       padding-top: 0.5em;
     }
-
 
     .container{
       height: 100%;

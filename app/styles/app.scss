@@ -3,6 +3,8 @@
 @import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'public/assets/base/base';
 
+$base-font-color:$dark-grey;
+
 $background-color: #F9F9F9;
 $border-bottom: 1px solid #DDD;
 $tour-nav-color: #555555;
@@ -11,28 +13,67 @@ body {
   position: relative;
 }
 
-// Homepage jumbotron styles
-@import "homepage-jumbotrons";
-
 // Side off-page menu style
 @import "sidemenu";
 
 // Header style
 $main-header-color:$blue-grey-600;
 @import "public/assets/base/peakaboo";
-header.peakaboo .header-title{
-  margin-top:0;
+header.peakaboo{
+  .header-title{
+    margin-top:0;
+    display: table;
+
+    a, a:active{
+      color:inherit;
+
+      &:hover, &:focus{
+        text-shadow: 3px 0 10px rgba(0, 0, 0, 0.33);
+      }
+    }
+
+    .chapter-title, .logo {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .logo{
+
+      img{
+        max-height: 1em;
+      }
+    }
+  }
+
+  &.mini .header-title{
+    margin-bottom: 0;
+    .logo{
+      left: -2em;
+      position: relative;
+
+      img{
+        max-height: 2em;
+      }
+    }
+  }
 }
 
-header.peakaboo.mini .header-title{
-   margin-top: 1em;
+header.peakaboo .wrapper{
+  margin: 0 5rem;
 }
+
 header.peakaboo .header-title .section-title:after{
   content: '';
 }
 
+// Homepage jumbotron styles
+@import "homepage-jumbotrons";
+
 // Tour stop styles
 @import "tour-stop";
+
+// Tour stop styles
+@import "tour-info";
 
 // Tour overview map styles
 @import "overview-map";
@@ -49,43 +90,28 @@ header.peakaboo .header-title .section-title:after{
 }
 
 div.loading {
-    display: block;
+    display: table;
     position: absolute;
     width: 100%;
     left: 0;
     padding: 0;
-    background-color: rgba(87, 84, 59, 0.46);
     z-index: 2;
     text-align: center;
     margin-top: 0em;
     height: 100%;
 
   .ui-loader {
-    top: 30%;
-    width: 12.5em;
+    width: 100%;
     opacity: .88;
-    box-shadow: 0 1px 1px -1px #fff;
-    height: auto;
-    margin: 0 auto .625em;
-    padding: 1em;
-    background-color: #fff;
-    border-color: #ddd;
-    color: #333;
-    text-shadow: 0 1px 0 #f3f3f3;
+    color: #81c784;
     position: relative;
-    border-radius: .3125em;
-    }
-}
-
-.loading-icon {
-  background-image: url(/assets/images/ajax-loader.gif);
-  content: '';
-  width: 2.75em;
-  height: 2.75em;
-  display: block;
-  background-size: 2.875em 2.875em;
-  border-radius: 2.25em;
-  margin: 0 auto .625em;
+    background: url("/assets/images/loader.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    display: table-cell;
+    vertical-align: middle;
+    height: 100vh;
+  }
 }
 
 .selectize-control {

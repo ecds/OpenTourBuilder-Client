@@ -2,84 +2,89 @@
 #home-content {
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 0;
+    padding-bottom: 5em;
+    background-color: $grey-100;
 
-    .jumbotron {
+    header{
+      color:$dark-grey;
       width: 100%;
+      background-color: $white;
+
+      .header-title{
+        color:#808080;
+      }
+
+    }
+
+    .card {
       position: relative;
-      margin: 0;
-      color: #EEE;
-      text-shadow: 0 1px 0 #f3f3f3;
-      min-height: 20em;
-      min-height: 25vh;
-      background-size: cover;
-      top: 0;
+      color: $base-font-color;
+      padding: 2em;
+      margin: 2em;
+      border: 1px solid $grey-200;
+      display: inline-block;
+      background-color: white;
+      border-radius: 3px;
+      border-bottom-width: 3px;
+      z-index: 1;
+      width: calc(100% - 4em);
 
-      &:after{
-        content:'';
-        top: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: block;
-        background: rgba(255, 255, 255, 0.89);
-        background: -moz-linear-gradient(top,  rgba(0,0,0,0.47) 0%, rgba(0,0,0,0.47) 42%, rgba(0,0,0,0) 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.47)), color-stop(42%,rgba(0,0,0,0.47)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  rgba(0,0,0,0.47) 0%,rgba(0,0,0,0.47) 42%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  rgba(0,0,0,0.47) 0%,rgba(0,0,0,0.47) 42%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  rgba(0,0,0,0.47) 0%,rgba(0,0,0,0.47) 42%,rgba(0,0,0,0) 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  rgba(0,0,0,0.47) 0%,rgba(0,0,0,0.47) 42%,rgba(0,0,0,0) 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#78000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+      @include media($large-2-screen-up){
+        width: calc(49% - 2em);
+        margin: 2em 1em;
+      }
 
-        @media screen and (min-width: 768px) {
-            bottom:0;
-            top:auto;
-            padding: 1em 10% 5em;
-            background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(26,26,26,0.8) 50%, rgba(51,51,51,0.8) 100%); /* FF3.6+ */
-            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(50%,rgba(26,26,26,0.8)), color-stop(100%,rgba(51,51,51,0.8))); /* Chrome,Safari4+ */
-            background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(26,26,26,0.8) 50%,rgba(51,51,51,0.8) 100%); /* Chrome10+,Safari5.1+ */
-            background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(26,26,26,0.8) 50%,rgba(51,51,51,0.8) 100%); /* Opera 11.10+ */
-            background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(26,26,26,0.8) 50%,rgba(51,51,51,0.8) 100%); /* IE10+ */
-            background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(26,26,26,0.8) 50%,rgba(51,51,51,0.8) 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc333333',GradientType=0 ); /* IE6-9 */
+      @import 'refills/dynamic_gradient';
+      a{
+        .image-gradient-dynamic{
+          overflow: hidden;
+          .copy{
+            @include transition(opacity 0.5s);
+          }
+          img{
+            @include filter(blur(4px));
+            @include transition(filter 0.5s, -webkit-filter 0.5s);
+          }
+        }
+        &:hover, &focus{
+          .image-gradient-dynamic{
+            .copy{
+              opacity: 0.66;
+            }
+            img{
+              @include filter(blur(0px));
+            }
+          }
         }
       }
+      .copy{
+        display: none;
+        visibility: hidden;
 
-      @media (min-width:767px){
-            padding:10em 0;
-      }
-
-      //If only one
-      &:nth-child(1):nth-last-child(1){
-        min-height: 100vh;
-      }
-
-      //If two
-      &:nth-child(1):nth-last-child(2), &:nth-child(1):nth-last-child(2)~.jumbotron{
-        min-height: 50vh;
-      }
-      //If three
-      &:nth-child(1):nth-last-child(3), &:nth-child(1):nth-last-child(3)~.jumbotron{
-        min-height: 33.33vh;
+        @include media($medium-screen-up){
+          display: block;
+          visibility: visible;
+        }
       }
 
       .container {
         padding: 1em 10% 5em;
-        bottom: 0;
         display: block;
-        padding: 2em 10% 1em;
+        padding: 2em 0 1em;
         width: 100%;
         position: relative;
-        top: auto;
-        z-index: 100;
-        background: none;
 
-        h1 {
+        h2 {
           font-size: 2em;
           margin-bottom: 15px;
           margin-top: 0.5em;
           line-height: 1;
           width: 100%;
+
+          @include media($medium-screen-up){
+            display: none;
+            visibility: hidden;
+          }
         }
 
         p {
@@ -89,66 +94,6 @@
           margin-top: 0;
           line-height: 1.4;
         }
-
-        @media screen and (min-width: 500px) {
-          h1.jumbo-header {
-            width: 100%;
-            font-size: 3.5em;
-          }
-        }
-
-        @media screen and (min-width: 768px) {
-            .jumbotron {
-                padding-top:48px;
-                padding-bottom: 48px
-            }
-
-            .container .jumbotron {
-                padding-left: 60px;
-                padding-right: 60px
-            }
-        }
-
-        button {
-          background-color: #99E9BC;
-          border-color: #A6E2C8;
-          color: #333;
-          text-shadow: 0 1px 0 #BEFFD6;
-          font-weight: 700;
-          margin: .5em;
-          padding: .7em 1em;
-          display: block;
-          position: relative;
-          text-align: center;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-          cursor: pointer;
-          border-width: 1px;
-          border-style: solid;
-          line-height: 1.3;
-          font-family: sans-serif;
-          width: 100%;
-        }
       }
     }
-
-  @media screen and (min-width: 768px) {
-    .jumbotron {
-        padding-top:48px;
-        padding-bottom: 48px
-    }
-
-    .container .jumbotron {
-        padding-left: 60px;
-        padding-right: 60px
-    }
-
-    .jumbotron .jumbo-header {
-        font-size:5em;
-    }
-    .jumbotron p {
-        font-size:2em;
-    }
-  }
 }

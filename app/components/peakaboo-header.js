@@ -6,12 +6,17 @@ export default Ember.Component.extend({
         offset = $peakaboo.offset().top,
         $mini = $peakaboo.clone().addClass('mini');
 
-        $mini.insertAfter($peakaboo);
+    var $menu_btn = Ember.$('#open-button');
+
+    $mini.insertAfter($peakaboo);
 
     var scrollTimer = null;
+
     Ember.$(window).scroll(function () {
         handleScroll();
-        stickArticles();
+        if(Ember.$(".content-wrap>.tour-info").length===0 && Ember.$(".tour-list>article").length>0){
+          stickArticles();
+        }
     });
 
    function handleScroll(){
@@ -20,10 +25,12 @@ export default Ember.Component.extend({
       if (scrollTop > scrollBP){
         $mini.css({'display':'block'});
         $peakaboo.addClass('p-hidden');
+        $menu_btn.addClass('p-mini');
       }
       else{
         $mini.css({'display':'none'});
         $peakaboo.removeClass('p-hidden');
+        $menu_btn.removeClass('p-mini');
       }
 
       if (scrollTop > (scrollBP + $peakaboo.height()) ){
@@ -49,17 +56,17 @@ export default Ember.Component.extend({
 
         if(isNaN(index_from_qs) === false && index===0){
           var href = location.href.replace(location.search,'');
-          window.history.pushState({},"", href);
+          window.history.replaceState({},"", href);
         }
 
         else if(isNaN(index_from_qs) === true && index === 1){
           var href = location.href+'?stop='+index;
-          window.history.pushState({},"", href);
+          window.history.replaceState({},"", href);
         }
 
         else if(isNaN(index_from_qs) === false && index_from_qs!==index){
           var href = location.href.replace(location.search,'?stop='+index);
-          window.history.pushState({},"", href);
+          window.history.replaceState({},"", href);
         }
 
         if((docViewBottom > elemBottom ) && (docViewTop >= elemTop) ){

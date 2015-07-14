@@ -1,10 +1,13 @@
 <div class="menu-wrap">
   <nav class="menu-top">
     <div class="icon-list">
-      <a href="/"><span class="fa fa-fw fa-home"></span></a>
-      <a href="#"><span class="fa fa-fw fa-bell-o"></span></a>
-      <a href="#"><span class="fa fa-fw fa-envelope-o"></span></a>
-      <a href="#"><span class="fa fa-fw fa-comment-o"></span></a>
+      <a id="tours-home" href="/" title="Tour Lists"><span class="fa fa-fw fa-sign-out fa-flip-horizontal"></span></a>
+      {{#if model.info_ids}}
+        {{#link-to 'tour' model.slug title='Tour Home' id="tour-home-link"}}<span class="fa fa-fw fa-home"></span>{{/link-to}}
+        {{#each info in model.info_ids}}
+          {{#link-to 'tour_info' info title=info.name}}<span class="fa fa-fw fa-info-circle"></span>{{/link-to}}
+        {{/each}}
+      {{/if}}
     </div>
   </nav>
   <nav class="menu-side">
@@ -15,7 +18,9 @@
           <a href="#" {{action 'goToLink' stop.slug}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
         {{/if}}
     {{/each}}
+    {{#if model.geospatial}}
       <a href="#" {{action 'goToLink' "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
+    {{/if}}
   </nav>
 </div>
 
@@ -24,16 +29,17 @@
 
   {{peakaboo-header model=model}}
 
-  <div class="tour-detail">
+  {{outlet "info"}}
 
+  <div class="tour-detail">
     <section class="tour-list">
       {{#each stop in model.stop_ids}}
 
           {{#if stop.intro}}
             <article class="tour-intro tour-section" {{bind-attr id="stop.slug"}}>
-              <div  class="container">
+              <div class="container">
                 <header>
-                    <h2 class="tour-section-header">{{stop.name}}</h2>
+                    <h2 class="tour-section-heading">{{stop.name}}</h2>
                 </header>
                 <section class="description">
                   {{{stop.description}}}
@@ -42,7 +48,6 @@
             </article>
 
           {{else}}
-            {{!-- {{#link-to 'tour_stop' stop}} --}}
             <article class="tour-stop tour-section" {{bind-attr id="stop.slug"}}>
               <div  class="container">
                 <header>
@@ -50,22 +55,15 @@
                     <span class="stop-number">{{stop.position}}</span>
                   </div>
 
-                  <h2 class="tour-section-header"> {{stop.name}}</h2>
+                  <h2 class="tour-section-heading"> {{stop.name}}</h2>
 
+                  {{#if model.geospatial}}
                   <div class="tour-section-thumbnail">
-                    {{#if model.geospatial}}
                       <a href="#" {{action 'openStopMap' stop}}>
                         <img {{bind-attr src=stop.map_image}}/>
                       </a>
-
-                    {{else}}
-                      {{#each image in stop.images}}
-                        <a href="javascript:void(null);">
-                          <img {{bind-attr src=image.image_preview}}/>
-                        </a>
-                      {{/each}}
-                    {{/if}}
                   </div>
+                  {{/if}}
                 </header>
 
                 <div class="wrapper">
@@ -87,6 +85,7 @@
 
       {{/each}}
 
+      {{#if model.geospatial}}
       <article class="tour-section tour-map" id="map-overview">
         <div  class="container">
           <header>
@@ -95,6 +94,7 @@
         </div>
         {{overview-map model=model}}
       </article>
+      {{/if}}
 
     </section>
 
