@@ -53,19 +53,20 @@ export default Ember.Component.extend({
 
         var index = $article.index();
         var index_from_qs = parseInt(location.search.replace('?stop=',''));
+        var href = '';
 
         if(isNaN(index_from_qs) === false && index===0){
-          var href = location.href.replace(location.search,'');
+          href = location.href.replace(location.search,'');
           window.history.replaceState({},"", href);
         }
 
         else if(isNaN(index_from_qs) === true && index === 1){
-          var href = location.href+'?stop='+index;
+          href = location.href+'?stop='+index;
           window.history.replaceState({},"", href);
         }
 
         else if(isNaN(index_from_qs) === false && index_from_qs!==index){
-          var href = location.href.replace(location.search,'?stop='+index);
+          href = location.href.replace(location.search,'?stop='+index);
           window.history.replaceState({},"", href);
         }
 

@@ -25,6 +25,9 @@ export default Ember.Route.extend({
             Ember.$('body').animate({scrollTop:Ember.$(elem).offset().top-80},0);
           }
         }
+        else{
+          Ember.$('body').scrollTop(0);
+        }
 
       });
     },
