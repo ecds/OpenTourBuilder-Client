@@ -42,8 +42,10 @@
             @include transition(opacity 0.5s);
           }
           img{
-            @include filter(blur(4px));
-            @include transition(filter 0.5s, -webkit-filter 0.5s);
+            @include media($medium-screen-up){
+              @include filter(blur(4px));
+              @include transition(filter 0.5s, -webkit-filter 0.5s);
+            }
           }
         }
         &:hover, &focus{
