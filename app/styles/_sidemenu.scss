@@ -64,12 +64,15 @@ $menu_width:300px;
   &:hover, &:focus, &:active {
     opacity: 0.6;
     background-color: $white;
+    color: transparent;
   }
 }
 
 /* Menu */
 .menu-wrap{
   position: fixed;
+  height: 100%;
+  overflow: scroll;
   z-index: 10;
   font-weight: 700;
   opacity: 0;

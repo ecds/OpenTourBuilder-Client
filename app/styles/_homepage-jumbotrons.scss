@@ -41,6 +41,11 @@
           .copy{
             @include transition(opacity 0.5s);
           }
+
+          picture{
+            min-height: 14em;
+          }
+
           img{
             @include media($medium-screen-up){
               @include filter(blur(4px));

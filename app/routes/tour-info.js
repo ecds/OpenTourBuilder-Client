@@ -6,5 +6,17 @@ export default Ember.Route.extend({
   },
   renderTemplate: function() {
     this.render('tour-info',{outlet: 'info'});
+  },
+  actions: {
+    didTransition: function() {
+      Ember.run.schedule('afterRender', function() {
+        if(!Ember.$("body").hasClass('show-menu')){
+          menuInit();
+        }
+        else{
+          Ember.$("#open-button").click();
+        }
+      });
+    }
   }
 });

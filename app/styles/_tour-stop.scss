@@ -122,6 +122,9 @@ $stop-min-height:80vh;
       .tour-section-heading{
         vertical-align: middle;
         padding-left: 10px;
+        @include media($medium-screen-up-max){
+          font-size: 2em;
+        }
       }
 
     }//header
@@ -158,6 +161,11 @@ $stop-min-height:80vh;
       @include container;
       width: auto;
       padding-top: 1em;
+      padding-bottom: 2em;
+
+      iframe{
+        max-width: 100%;
+      }
     }
   }
 

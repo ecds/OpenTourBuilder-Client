@@ -33,8 +33,6 @@ export default Ember.Route.extend({
 
               Ember.$('body').animate({scrollTop:$elem.offset().top-80},500);
             }
-
-
        },
 
        openStopMap: function(stop) {

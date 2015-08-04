@@ -22,6 +22,7 @@ $massive-2-screen: em(4104);
 $small-screen-up-max: new-breakpoint(max-width em(400) 4);
 
 $medium-screen-up: new-breakpoint(min-width $medium-screen 4);
+$medium-screen-up-max: new-breakpoint(max-width $medium-screen 4);
 $medium-2-screen-up: new-breakpoint(min-width $medium-2-screen 8);
 
 $large-screen-up: new-breakpoint(min-width $large-screen 8);

@@ -15,8 +15,14 @@ export default Ember.Component.extend({
     Ember.$(window).scroll(function () {
         handleScroll();
         if(Ember.$(".content-wrap>.tour-info").length===0 && Ember.$(".tour-list>article").length>0){
-          stickArticles();
+          if(Ember.$(window).width()>600){
+            stickArticles();
+          }
         }
+    }).resize(function(){
+      if(Ember.$(window).width() <= 600){
+        Ember.$('.tour-list>article').removeClass('stuck').removeClass('stuck-bottom').css('height','');
+      }
     });
 
    function handleScroll(){
