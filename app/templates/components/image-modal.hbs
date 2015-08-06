@@ -30,7 +30,6 @@
 
 <div {{bind-attr id=image.label}} class="hidden">
   <h2>{{image.title}}</h2>
-  <p>{{image.caption}}</p>
   <picture>
     <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_full}} />
 
@@ -39,6 +38,7 @@
     <img {{bind-attr src=image.phone_full}} />
   </picture>
   <div>
+    <p>{{image.caption}}</p>
     <a {{bind-attr href=image.original_image}}>
       See lager image {{image.size}}
     </a>

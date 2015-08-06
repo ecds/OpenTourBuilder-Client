@@ -27,16 +27,19 @@
 
     <div class="direction-list">
       <div class="fallback">
-        Approximate Address: <span class="address"></span>
+        <p>Approximate Address: </p><span class="address"></span>
         <span class="address-warn"></span>
       </div>
     </div>
 
     <div class="direction-notes">
+    <div class="fallback">
+      Approximate Address: <span class="address"></span>
+    </div>
       {{#if model.direction_notes}}
           {{{model.direction_notes}}}
       {{else}}
-          <p>No notes to show</p>
+          <p>No notes to show.</p>
       {{/if}}
 
     </div>

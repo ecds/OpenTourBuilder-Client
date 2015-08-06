@@ -77,9 +77,12 @@ function drawMap(stop){
                     },function(results, status){
                       Ember.$('.geoservice-warning').show();
                       Ember.$('.fallback').show();
-                      Ember.$('#reload-map-button').hide();
+                      Ember.$(".selectize-control").hide();
+                      Ember.$(".new-directions-button").hide();
+                      Ember.$(".fa-refresh").hide();
                       if(status === google.maps.GeocoderStatus.OK){
-                        Ember.$("span.address").html(results[0].formatted_address);
+                        console.log(results[0].formatted_address);
+                        Ember.$(elem+" .address").html(results[0].formatted_address);
                       }
                       else{
                         Ember.$("span.address-warn").html('Unable to determine address.');

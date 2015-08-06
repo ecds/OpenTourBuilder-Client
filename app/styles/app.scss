@@ -135,6 +135,11 @@ div.loading {
 
 .geoservice-warning {
   background-color: #FFF7CD;
+  color: gray;
+
+  h2 {
+    font-size: 1.25em;
+  }
 }
 
 .address, .address-warn {
