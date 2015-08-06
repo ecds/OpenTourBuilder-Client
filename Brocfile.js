@@ -2,7 +2,15 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var env = EmberApp.env();
+var isProductionLikeBuild = ['production', 'staging'].indexOf(env) > -1;
+
+var app = new EmberApp({
+	fingerprint: {
+		enabled: isProductionLikeBuild,
+    	prepend: 'https://s3.amazonaws.com/opentourbuilder-dev/'
+	}
+});
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
