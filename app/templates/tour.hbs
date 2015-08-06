@@ -13,9 +13,9 @@
   <nav class="menu-side">
     {{#each stop in model.stop_ids}}
         {{#if stop.intro}}
-          <a href="#" {{action 'goToLink' stop.slug}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
+          <a href="#" {{action 'goToLink' stop.id}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
         {{else}}
-          <a href="#" {{action 'goToLink' stop.slug}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
+          <a href="#" {{action 'goToLink' stop.id}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
         {{/if}}
     {{/each}}
     {{#if model.geospatial}}
@@ -36,7 +36,7 @@
       {{#each stop in model.stop_ids}}
 
           {{#if stop.intro}}
-            <article class="tour-intro tour-section" {{bind-attr id="stop.slug"}}>
+            <article class="tour-intro tour-section" {{bind-attr id="stop.id"}}>
               <div class="container">
                 <header>
                     <h2 class="tour-section-heading">{{stop.name}}</h2>
@@ -48,7 +48,7 @@
             </article>
 
           {{else}}
-            <article class="tour-stop tour-section" {{bind-attr id="stop.slug"}}>
+            <article class="tour-stop tour-section" {{bind-attr id="stop.id"}}>
               <div  class="container">
                 <header>
                   <div class="prefix">
