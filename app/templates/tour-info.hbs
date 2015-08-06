@@ -1,20 +1,8 @@
-<div class="tour-info">
-
-	<header class="centered-navigation" role="banner">
-		<div class="centered-navigation-wrapper">
-			<nav role="navigation">
-				<ul id="js-centered-navigation-menu" class="centered-navigation-menu show tour-stop-nav">
-					<li class="nav-link">{{#link-to 'tour' model.tour.slug}}Home{{/link-to}}</li>
-					<li class="nav-link title">
-						{{model.name}}
-					</li>
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<section>
-		<article>
-			{{{model.description}}}
-		</article>
-	</section>
-</div>
+<article class="tour-info">
+  <header>
+    <h2 class="tour-info-heading">{{model.name}}</h2>
+  </header>
+  <section class="description">
+      {{{model.description}}}
+  </section>
+</article>

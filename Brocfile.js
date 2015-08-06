@@ -17,6 +17,35 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
-app.import('bower_components/js-cookie/src/js.cookie.js');
+var funnel = require('broccoli-funnel');
+var mergeTrees = require('broccoli-merge-trees');
 
-module.exports = app.toTree();
+var fancyboxImages = funnel('bower_components/fancybox/source', {
+  destDir: 'assets',
+});
+
+app.import('bower_components/js-cookie/src/js.cookie.js');
+app.import('bower_components/swiper/dist/js/swiper.min.js');
+app.import('bower_components/fancybox/source/jquery.fancybox.pack.js');
+app.import('bower_components/swiper/dist/css/swiper.min.css');
+app.import('bower_components/fancybox/source/jquery.fancybox.css');
+
+// Font Awesome
+var fontAwesome = funnel('bower_components/font-awesome', {
+  destDir: 'assets/fontawesome',
+});
+
+// For Top Menu
+app.import('vendor/classie.js');
+app.import('vendor/menu.js');
+app.import('vendor/drawMap.js');
+
+
+
+module.exports = mergeTrees([
+  app.toTree(),
+  fancyboxImages,
+  fontAwesome
+],{
+  overwrite: true
+});

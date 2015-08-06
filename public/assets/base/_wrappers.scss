@@ -1,0 +1,36 @@
+/*
+*  Simple elastic gutters
+*  Note: box-sizing will not work in IE6-7
+*/
+
+@mixin container {
+  margin: 0 $column;
+  
+  @include media($medium-2-screen-up) {
+    margin: 0 $column*3;
+  }
+  
+  @include media($large-screen-up) {
+    margin: 0 $column;
+  }
+  
+  @include media($huge-screen-up) {
+    margin: 0 $column*3;
+  }
+  
+  @include media($massive-screen-up) { 
+    margin: 0 $column*5;
+  }
+  
+  @include media($massive-screen-up) { 
+    margin: 0 $column*5;
+  }
+}
+
+@mixin wrapper {
+  padding: 0 $gutter;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}

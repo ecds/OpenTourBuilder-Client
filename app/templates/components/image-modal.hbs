@@ -1,0 +1,48 @@
+{{modal}}
+
+{{#if stop}}
+  <a {{bind-attr href=stop.placeholder}} data-title-id="video" class="fancybox">
+    <picture>
+      <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_default}} />
+
+      <source media="(min-width: 465px)" {{bind-attr srcset=stop.tablet_default}} />
+
+      <img {{bind-attr src=stop.phone_default}} />
+    </picture>
+  </a>
+
+  <div id="video" class="hidden">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{unbound stop.video_embed}}" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+
+{{else}}
+
+<a {{bind-attr href=image.placeholder}} {{bind-attr data-title-id=image.label}} class="fancybox">
+  <picture>
+    <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_thumb}} />
+
+    <source media="(min-width: 465px)" {{bind-attr srcset=image.tablet_thumb}} />
+
+    <img {{bind-attr src=image.phone_thumb}} />
+  </picture>
+</a>
+
+<div {{bind-attr id=image.label}} class="hidden">
+  <h2>{{image.title}}</h2>
+  <p>{{image.caption}}</p>
+  <picture>
+    <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_full}} />
+
+    <source media="(min-width: 465px)" {{bind-attr srcset=image.tablet_full}} />
+
+    <img {{bind-attr src=image.phone_full}} />
+  </picture>
+  <div>
+    <a {{bind-attr href=image.original_image}}>
+      See lager image {{image.size}}
+    </a>
+  </div>
+</div>
+
+{{/if}}

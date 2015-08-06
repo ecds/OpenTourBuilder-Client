@@ -1,0 +1,49 @@
+// overview-map
+
+$overview-map-height: calc( 100vh - 10em);
+
+#map-overview{
+  min-height: $overview-map-height;
+}
+
+.tour-map{
+
+  ol {
+    @extend %circle-ol;
+    padding-top: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    @include media($medium-screen-up){
+      @include column-count(2);
+    }
+    @include media($large-2-screen-up){
+      @include column-count(3);
+    }
+
+    li{
+      display: inline-block;
+      width:100%;
+      padding-right: 2em;
+      margin-top: 0.5em;
+
+      &:before{
+        margin-top: -0.25em;
+      }
+    }
+  }
+
+  .overview-map{
+    background-color:$grey-300;
+    display: block;
+    float:left;
+    width: 100%;
+    position: relative;
+    min-height: $overview-map-height;
+
+    #map{
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+  }
+}

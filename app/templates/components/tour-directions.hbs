@@ -1,0 +1,44 @@
+{{yield}}
+
+<header>
+  {{ember-selectize
+    id=stop.slug
+    content=stop.direction_modes
+    optionValuePath="content"
+    optionLabelPath="content"
+  }}
+  <a class="new-directions-button" href="#" {{action 'showDirections' stop}}><span class="fa fa-fw fa-arrow-right"></span></a>
+  <div class="geoservice-warning">
+    <h2>Location Services Disabled</h2>
+    <p>Sorry, we need to be able to access your location in order to display directions.</p>
+  </div>
+  <ul class="tabs">
+    <li><a href="#" {{action 'showDirections' stop}}><span class="fa fa-fw fa-refresh"></span></a></li>
+    <li><a href="#" {{action 'goToMapItem' stop.slug "map-canvas"}}>Map</a></li>
+    <li><a href="#" {{action 'goToMapItem' stop.slug "direction-list"}}>Directions</a></li>
+    <li><a href="#" {{action 'goToMapItem' stop.slug "direction-notes"}}>Notes</a></li>
+  </ul>
+
+</header>
+<div class="wrapper">
+  <div class="container">
+
+    <div class="map-canvas"></div>
+
+    <div class="direction-list">
+      <div class="fallback">
+        Approximate Address: <span class="address"></span>
+        <span class="address-warn"></span>
+      </div>
+    </div>
+
+    <div class="direction-notes">
+      {{#if model.direction_notes}}
+          {{{model.direction_notes}}}
+      {{else}}
+          <p>No notes to show</p>
+      {{/if}}
+
+    </div>
+  </div>
+</div>

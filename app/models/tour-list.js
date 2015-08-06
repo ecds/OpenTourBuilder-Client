@@ -11,5 +11,8 @@ export default DS.Model.extend({
   phone_splash: DS.attr('string'),
   tablet_splash: DS.attr('string'),
   desktop_splash: DS.attr('string'),
-  slug_class: DS.attr('string')
+  slug_class: DS.attr('string'),
+  phone_default: DS.attr('string'),
+  tablet_default: DS.attr('string'),
+  desktop_default: DS.attr('string')
 });

@@ -1,0 +1,106 @@
+
+#home-content {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 5em;
+    background-color: $grey-100;
+
+    header{
+      color:$dark-grey;
+      width: 100%;
+      background-color: $white;
+
+      .header-title{
+        color:#808080;
+      }
+
+    }
+
+    .card {
+      position: relative;
+      color: $base-font-color;
+      padding: 2em;
+      margin: 2em;
+      border: 1px solid $grey-200;
+      display: inline-block;
+      background-color: white;
+      border-radius: 3px;
+      border-bottom-width: 3px;
+      z-index: 1;
+      width: calc(100% - 4em);
+
+      @include media($large-2-screen-up){
+        width: calc(49% - 2em);
+        margin: 2em 1em;
+      }
+
+      @import 'refills/dynamic_gradient';
+      a{
+        .image-gradient-dynamic{
+          overflow: hidden;
+          .copy{
+            @include transition(opacity 0.5s);
+          }
+
+          picture{
+            min-height: 14em;
+          }
+
+          img{
+            @include media($medium-screen-up){
+              @include filter(blur(4px));
+              @include transition(filter 0.5s, -webkit-filter 0.5s);
+            }
+          }
+        }
+        &:hover, &focus{
+          .image-gradient-dynamic{
+            .copy{
+              opacity: 0.66;
+            }
+            img{
+              @include filter(blur(0px));
+            }
+          }
+        }
+      }
+      .copy{
+        display: none;
+        visibility: hidden;
+
+        @include media($medium-screen-up){
+          display: block;
+          visibility: visible;
+        }
+      }
+
+      .container {
+        padding: 1em 10% 5em;
+        display: block;
+        padding: 2em 0 1em;
+        width: 100%;
+        position: relative;
+
+        h2 {
+          font-size: 2em;
+          margin-bottom: 15px;
+          margin-top: 0.5em;
+          line-height: 1;
+          width: 100%;
+
+          @include media($medium-screen-up){
+            display: none;
+            visibility: hidden;
+          }
+        }
+
+        p {
+          margin-bottom: 15px;
+          font-size: 1.25em;
+          font-weight: 200;
+          margin-top: 0;
+          line-height: 1.4;
+        }
+      }
+    }
+}

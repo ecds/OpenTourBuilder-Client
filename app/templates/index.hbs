@@ -1,30 +1,14 @@
-<div id="home-content">
-	{{#each tour in this.model}}
-		<div {{bind-attr class=":jumbotron tour.slug"}}>
+<article id="home-content">
 
-			<style>
-				{{tour.slug_class}} {
-					background-image: url({{tour.phone_splash}});
-		        }
-		        @media(min-width:767px){
-		            {{tour.slug_class}}{
-		                background-image: url({{ tour.tablet_splash}});
-		                background-position: center 70%;
-		            }
-		        }
-		        @media(min-width:993px){
-		            {{tour.slug_class}}{
-		                background-image: url({{ tour.desktop_splash}});
-		            }
-			</style>
+  {{peakaboo-header name='Tours List' logo='/assets/images/logo.png'}}
 
-			<div class="container">
-				<h1 class="jumbo-header">{{tour.name}}</h1>
-				<p>{{{tour.description}}}</p>
-				{{#link-to 'tour' tour}}
-					<button>Start Tour</button>
-				{{/link-to}}
-			</div>
-		</div>
-	{{/each}}
-</div>
+  {{#each tour in this.model}}
+
+    <section {{bind-attr class=":card tour.slug"}}>
+
+        {{gradient-image tour=tour}}
+
+    </section>
+
+  {{/each}}
+</article>

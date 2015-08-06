@@ -1,0 +1,32 @@
+//tour info style
+
+.tour-info{
+  background-color:$background-color;
+  &+.tour-detail{
+    display: none;
+  }
+  header{
+    min-height: 80px;
+    display: table;
+    width: 100%;
+    padding:0;
+    background-color: $green-300;
+    color: $header-color;
+    display: table;
+
+    .tour-info-heading{
+      display: table-cell;
+      vertical-align: middle;
+      margin: 0;
+      padding: 0 4.5rem;
+    }
+  }
+
+  .description{
+      @include container;
+      width: auto;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      min-height: 50vh;
+  }
+}
