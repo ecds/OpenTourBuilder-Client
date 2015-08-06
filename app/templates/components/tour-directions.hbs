@@ -12,6 +12,9 @@
     <h2>Location Services Disabled</h2>
     <p>Sorry, we need to be able to access your location in order to display directions.</p>
   </div>
+  <div class="directions-intro">
+    <article>{{intro}}</article>
+  </div>
   <ul class="tabs">
     <li><a href="#" {{action 'showDirections' stop}}><span class="fa fa-fw fa-refresh"></span></a></li>
     <li><a href="#" {{action 'goToMapItem' stop.slug "map-canvas"}}>Map</a></li>
@@ -36,11 +39,8 @@
     <div class="fallback">
       Approximate Address: <span class="address"></span>
     </div>
-      {{#if model.direction_notes}}
-          {{{model.direction_notes}}}
-      {{else}}
-          <p>No notes to show.</p>
-      {{/if}}
+
+          {{{notes}}}
 
     </div>
   </div>
