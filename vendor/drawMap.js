@@ -6,7 +6,7 @@ function drawMap(stop){
     if(typeof(selectedMode) === "undefined"){
       selectedMode = 'WALKING';
     }
-    var slug = stop.get('slug'),
+    var slug = stop.get('id'),
         elem = "#"+slug,
         lat = stop.get('lat'),
         lng = stop.get('lng');
@@ -112,7 +112,7 @@ function drawMap(stop){
             // Draw route to map
               directionsDisplay.setDirections(result);
 
-              var list = document.querySelector(elem+" .direction-list");
+              var list = Ember.$(elem+" .direction-list")[0];
 
               // List turn-by-turn directions
               directionsDisplay.setPanel(list);

@@ -37,7 +37,7 @@ export default Ember.Route.extend({
 
        openStopMap: function(stop) {
 
-           var slug = stop.get('slug'),
+           var slug = stop.get('id'),
                elem = "#"+slug,
                $elem = Ember.$(elem),
                $directions = Ember.$(elem+" .direction-list .adp");
