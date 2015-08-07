@@ -1,7 +1,7 @@
 {{modal}}
 
 {{#if stop}}
-  <a {{bind-attr href=stop.placeholder}} data-title-id="video" class="fancybox">
+  <a class="fancybox fancybox-media" href="https://www.youtube.com/embed/{{unbound stop.video_embed}}">
     <picture>
       <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_default}} />
 
@@ -18,7 +18,7 @@
 
 {{else}}
 
-<a {{bind-attr href=image.placeholder}} {{bind-attr data-title-id=image.label}} class="fancybox">
+<a class="fancybox" data-fancybox-type="iframe" href="/image/{{image.id}}">
   <picture>
     <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_thumb}} />
 

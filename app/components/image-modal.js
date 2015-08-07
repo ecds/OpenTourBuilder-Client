@@ -9,18 +9,25 @@ export default Ember.Component.extend({
 
 					Ember.$(".fancybox").fancybox({
 
-        				beforeLoad: function() {
-            				var el, id = Ember.$(this.element).data('title-id');
+        			// 	beforeLoad: function() {
+           //  				var el, id = Ember.$(this.element).data('title-id');
 
-			            	if (id) {
-			                	el = Ember.$('#' + id);
+			        //     	if (id) {
+			        //         	el = Ember.$('#' + id);
             
-            			    if (el.length) {
-			                    this.title = el.html();
-            			    }
-            			}
-        			}
+           //  			    if (el.length) {
+			        //             this.title = el.html();
+           //  			    }
+           //  			}
+        			// }
     			});
+					Ember.$('.fancybox-media').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+		helpers : {
+			media : {}
+		}
+	});
 			});			
 		});
 

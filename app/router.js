@@ -6,10 +6,13 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+	this.resource('image', {path: '/image/:id'});
+
   this.resource('tour', {path: '/:slug'}, function(){
     this.resource('tour_stop', {path: '/:id', queryParams: ['anchor']});
     this.resource('tour_info', {path: '/option/:id'});
   });
+
 });
 
 export default Router;
