@@ -372,6 +372,35 @@ $stop-min-height:80vh;
         right: 0;
       }
     }
+
+  .fancybox-media{
+
+    &:after{
+      content: '\25B6';
+      position: absolute;
+      height: 1.5em;
+      line-height: 1.75;
+      width: 1.25em;
+      padding-left: 0.25em;
+      background: $pink;
+      color: $white;
+      top: calc(50% - 0.75em);
+      left: calc(50% - 0.75em);
+      border-radius: 50%;
+      font-size: 3em;
+      text-align: center;
+      box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.52);
+      text-shadow: 1px 1px 5px #AF365E;
+      @include transition(background 0.2s);
+    }
+
+    &:hover, &:focus{
+      &:after{
+        background: $pink-400;
+      }
+    }
+  }
+
   }//end article
 }//end tour-list
 

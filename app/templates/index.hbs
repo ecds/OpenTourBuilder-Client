@@ -1,12 +1,12 @@
 <article id="home-content">
 
-  {{peakaboo-header name='Tours List' logo='/assets/images/logo.png'}}
+  {{home-header name='Tours List' logo='/assets/images/logo.png'}}
 
   {{#each tour in this.model}}
 
-    <section {{bind-attr class=":card tour.slug"}}>
+    <section {{bind-attr class=":panel tour.slug"}}>
 
-        {{gradient-image tour=tour}}
+        {{tour-image-info tour=tour}}
 
     </section>
 

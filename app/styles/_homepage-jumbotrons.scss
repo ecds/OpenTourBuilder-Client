@@ -2,104 +2,94 @@
 #home-content {
     padding-left: 0px;
     padding-right: 0px;
-    padding-bottom: 5em;
+    padding-bottom: 0;
     background-color: $grey-100;
 
     header{
       color:$dark-grey;
       width: 100%;
-      background-color: $white;
+      background-color: #1D221F;
+      padding: 1em 0 0;
+      min-height: 0;
+      position:  absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      font-size: 50%;
 
       .header-title{
-        color:#808080;
+        color:#7B7B7B;
+      }
+      .logo{
+        display: inline-block;
+        margin-right: 15px;
       }
 
     }
 
-    .card {
+    .panel {
       position: relative;
       color: $base-font-color;
-      padding: 2em;
-      margin: 2em;
-      border: 1px solid $grey-200;
-      display: inline-block;
+      margin: 0;
+      display: block;
       background-color: white;
       border-radius: 3px;
       border-bottom-width: 3px;
       z-index: 1;
-      width: calc(100% - 4em);
+      width: 100%;
+      max-height: 100vh;
+      overflow: hidden;
 
-      @include media($large-2-screen-up){
-        width: calc(49% - 2em);
-        margin: 2em 1em;
-      }
+      .tour{
 
-      @import 'refills/dynamic_gradient';
-      a{
-        .image-gradient-dynamic{
+        picture{
+          min-height: 14em;
+          height: 100vh;
           overflow: hidden;
-          .copy{
-            @include transition(opacity 0.5s);
-          }
-
-          picture{
-            min-height: 14em;
-          }
 
           img{
-            @include media($medium-screen-up){
-              @include filter(blur(4px));
-              @include transition(filter 0.5s, -webkit-filter 0.5s);
-            }
+            width: 100%;
+            max-width: none;
           }
         }
-        &:hover, &focus{
-          .image-gradient-dynamic{
-            .copy{
-              opacity: 0.66;
-            }
-            img{
-              @include filter(blur(0px));
-            }
-          }
-        }
-      }
-      .copy{
-        display: none;
-        visibility: hidden;
 
-        @include media($medium-screen-up){
-          display: block;
-          visibility: visible;
-        }
-      }
-
-      .container {
-        padding: 1em 10% 5em;
-        display: block;
-        padding: 2em 0 1em;
-        width: 100%;
-        position: relative;
-
-        h2 {
-          font-size: 2em;
-          margin-bottom: 15px;
-          margin-top: 0.5em;
-          line-height: 1;
+        .copy{
+          display: table;
+          position: absolute;
           width: 100%;
+          height: 100vh;
+          top:0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.4);
 
-          @include media($medium-screen-up){
-            display: none;
-            visibility: hidden;
+          .inner{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding: 10px 15%;
+            color:$white;
+
+            @include media($medium-2-screen-up){
+              padding: 10px 25%;
+            }
+
+            h2{
+              opacity: 0.8;
+            }
+
+            a{
+              @include button-variant($white);
+              font-size: 80%;
+              padding: 1em 2em;
+              line-height: 1;
+              opacity: 0.8;
+              @include transition(background-color 0.2s);
+
+              &:focus, &:hover{
+                background-color: #99E9BC;
+              }
+            }
           }
-        }
-
-        p {
-          margin-bottom: 15px;
-          font-size: 1.25em;
-          font-weight: 200;
-          margin-top: 0;
-          line-height: 1.4;
         }
       }
     }
