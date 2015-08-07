@@ -5,4 +5,5 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   position: DS.attr('number'),
   tour: DS.belongsTo('tourDetail'),
+  icon: DS.attr('string')
 });

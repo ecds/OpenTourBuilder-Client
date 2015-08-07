@@ -29,5 +29,8 @@ export default DS.Model.extend({
 	phone_default: DS.attr('string'),
 	tablet_default: DS.attr('string'),
 	desktop_default: DS.attr('string'),
-	placeholder: DS.attr('string')
+	placeholder: DS.attr('string'),
+	phone_poster: DS.attr('string'),
+	tablet_poster: DS.attr('string'),
+	desktop_poster: DS.attr('string')
 });

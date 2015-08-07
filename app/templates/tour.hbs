@@ -5,7 +5,7 @@
       {{#if model.info_ids}}
         {{#link-to 'tour' model.slug title='Tour Home' id="tour-home-link"}}<span class="fa fa-fw fa-home"></span>{{/link-to}}
         {{#each info in model.info_ids}}
-          {{#link-to 'tour_info' info title=info.name}}<span class="fa fa-fw fa-info-circle"></span>{{/link-to}}
+          {{#link-to 'tour_info' info title=info.name}}<span {{bind-attr class=":fa :fa-fw info.icon"}}></span>{{/link-to}}
         {{/each}}
       {{/if}}
     </div>
