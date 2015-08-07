@@ -11,9 +11,9 @@
     </picture>
   </a>
 
-  <div id="video" class="hidden">
+<!--   <div id="video" class="hidden">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{unbound stop.video_embed}}" frameborder="0" allowfullscreen></iframe>
-  </div>
+  </div> -->
 
 
 {{else}}
@@ -28,7 +28,7 @@
   </picture>
 </a>
 
-<div {{bind-attr id=image.label}} class="hidden">
+<!-- <div {{bind-attr id=image.label}} class="hidden">
   <h2>{{image.title}}</h2>
   <picture>
     <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_full}} />
@@ -43,6 +43,6 @@
       See lager image {{image.size}}
     </a>
   </div>
-</div>
+</div> -->
 
 {{/if}}
