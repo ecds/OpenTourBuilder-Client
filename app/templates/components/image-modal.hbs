@@ -3,11 +3,11 @@
 {{#if stop}}
   <a class="fancybox fancybox-media" href="https://www.youtube.com/embed/{{unbound stop.video_embed}}">
     <picture>
-      <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_default}} />
+      <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_poster}} />
 
-      <source media="(min-width: 465px)" {{bind-attr srcset=stop.tablet_default}} />
+      <source media="(min-width: 465px)" {{bind-attr srcset=stop.tablet_poster}} />
 
-      <img {{bind-attr src=stop.phone_default}} />
+      <img {{bind-attr src=stop.phone_poster}} />
     </picture>
   </a>
 
