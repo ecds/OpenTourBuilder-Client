@@ -48,7 +48,7 @@ export default Ember.Component.extend({
                   content: contentString
               });
 
-              var icon = '/assets/images/markers/marker' + stop.get('content.position') + '.png';
+              var icon = 'https://s3.amazonaws.com/atlmaps-staging/assets/images/markers/marker' + stop.get('content.position') + '.png';
 
                 var marker = new google.maps.Marker({
                   position: stopCords,
