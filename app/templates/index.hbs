@@ -4,11 +4,15 @@
 
   {{#each tour in this.model}}
 
+  	{{#if tour.published}}
+
     <section {{bind-attr class=":panel tour.slug"}}>
 
         {{tour-image-info tour=tour}}
 
     </section>
+
+    {{/if}}
 
   {{/each}}
 </article>
