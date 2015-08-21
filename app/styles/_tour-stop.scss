@@ -38,6 +38,8 @@ $stop-min-height:80vh;
     @include transition(box-shadow 1s ease, background-color 1s ease);
 
     &.tour-intro{
+      min-height: 0;
+      padding-bottom: 2em;
       .container header{
         background-color: $intro-header-background-color;
         color: $intro-header-color;
