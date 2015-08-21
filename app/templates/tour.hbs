@@ -8,18 +8,24 @@
           {{#link-to 'tour_info' info title=info.name}}<span {{bind-attr class=":fa :fa-fw info.icon"}}></span>{{/link-to}}
         {{/each}}
       {{/if}}
+      <form class="search-bar" role="search">
+        <input type="search" placeholder="Enter Search" class="tour-search"/>
+        <button type="submit" {{action 'search'}}>
+          <span class="fa fa-fw fa-search"></span>
+        </button>
+      </form>
     </div>
   </nav>
   <nav class="menu-side">
     {{#each stop in model.stop_ids}}
         {{#if stop.intro}}
-          <a href="#" {{action 'goToLink' stop.id}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
+          <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
         {{else}}
-          <a href="#" {{action 'goToLink' stop.id}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
+          <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
         {{/if}}
     {{/each}}
     {{#if model.geospatial}}
-      <a href="#" {{action 'goToLink' "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
+      <a href="#" {{action 'goToLink' stop.tour_slug "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
     {{/if}}
   </nav>
 </div>
@@ -30,6 +36,8 @@
   {{peakaboo-header model=model}}
 
   {{outlet "info"}}
+
+  {{outlet "search"}}
 
   <div class="tour-detail">
     <section class="tour-list">

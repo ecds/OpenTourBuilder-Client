@@ -1,13 +1,11 @@
 // app/routes/index.js
 import Ember from "ember";
 import DS from "ember-data";
-/* global google */
-/* global Cookies */
 /* global drawMap */
 
 export default Ember.Route.extend({
   actions: {
-       goToLink: function(slug) {
+       goToLink: function(tour_slug, slug) {
             var anchor = "#"+slug;
             var $elem = Ember.$(anchor);
             var index = $elem.index();
@@ -17,7 +15,6 @@ export default Ember.Route.extend({
                 is_info_page = $info_page_container.length>0;
 
             if(is_info_page){
-              var tour_slug = location.pathname.split('/option')[0].replace('/','');
               this.transitionTo('tour',tour_slug, {queryParams:{stop:index}});
               var $window = Ember.$('window');
               $window.scrollTop($window.scrollTop()+1);
@@ -47,6 +44,11 @@ export default Ember.Route.extend({
            if($directions.length<=0){
              drawMap(stop);
            }
+       },
+
+       search: function(){
+        var searchTerm = Ember.$("input.tour-search").val();
+        this.transitionTo('search', searchTerm);
        }
    }
 });

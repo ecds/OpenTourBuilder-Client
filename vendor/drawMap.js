@@ -1,4 +1,8 @@
 // Draw directions map
+// import Ember from 'ember';
+
+// /*globals google, Cookies*/
+
 function drawMap(stop){
 
     var selectedMode = Cookies.get('selectedMode');
@@ -19,7 +23,7 @@ function drawMap(stop){
     initializeMap(elem, selectedMode, lat, lng);
 
     function initializeMap(elem, selectedMode, lat, lng, parkLng, parkLat){
-      Ember.$(elem+" .direction-list").html('');
+      //Ember.$(elem+" .direction-list").html('');
 
       // Set the value the user last used
       Ember.$(".mode_select").val(selectedMode);

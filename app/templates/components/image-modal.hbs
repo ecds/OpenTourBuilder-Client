@@ -1,7 +1,7 @@
 {{modal}}
 
 {{#if stop}}
-  <a class="fancybox fancybox-media" href="https://www.youtube.com/embed/{{unbound stop.video_embed}}">
+  <a class="fancybox fancybox-media" data-fancybox-type="iframe" href="https://www.youtube.com/embed/{{unbound stop.video_embed}}">
     <picture>
       <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_poster}} />
 
@@ -10,11 +10,6 @@
       <img {{bind-attr src=stop.phone_poster}} />
     </picture>
   </a>
-
-<!--   <div id="video" class="hidden">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{unbound stop.video_embed}}" frameborder="0" allowfullscreen></iframe>
-  </div> -->
-
 
 {{else}}
 
@@ -27,22 +22,5 @@
     <img {{bind-attr src=image.phone_thumb}} />
   </picture>
 </a>
-
-<!-- <div {{bind-attr id=image.label}} class="hidden">
-  <h2>{{image.title}}</h2>
-  <picture>
-    <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_full}} />
-
-    <source media="(min-width: 465px)" {{bind-attr srcset=image.tablet_full}} />
-
-    <img {{bind-attr src=image.phone_full}} />
-  </picture>
-  <div>
-    <p>{{image.caption}}</p>
-    <a {{bind-attr href=image.original_image}}>
-      See lager image {{image.size}}
-    </a>
-  </div>
-</div> -->
 
 {{/if}}
