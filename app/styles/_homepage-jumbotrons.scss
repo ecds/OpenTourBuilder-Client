@@ -78,16 +78,18 @@
             }
 
             a{
-              @include button-variant($white);
+              //@include button-variant($white);
               font-size: 80%;
               padding: 1em 2em;
               line-height: 1;
               opacity: 0.8;
-              @include transition(background-color 0.2s);
+              //@include transition(background-color 0.2s);
+              background-color: darkgrey;
 
               &:focus, &:hover{
                 background-color: #99E9BC;
               }
+
             }
           }
         }

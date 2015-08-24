@@ -2,7 +2,7 @@ import DS from "ember-data";
 
 export default DS.RESTAdapter.extend({
   // host: 'http://172.16.83.143:8000',
- host: 'http://otb-api.dev.ecdsweb.org',
+ host: 'http://api-campustour.ecdsweb.org',
  //host: 'http://172.16.83.143:8000',
  
   namespace: 'v1',
