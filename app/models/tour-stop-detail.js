@@ -25,6 +25,7 @@ export default DS.Model.extend({
 	previous_stop: DS.attr('string'),
 	next_stop: DS.attr('string'),
 	geospatial: DS.attr('boolean'),
+	published: DS.attr('boolean'),
 	intro: DS.attr('boolean'),
 	phone_default: DS.attr('string'),
 	tablet_default: DS.attr('string'),
