@@ -2,6 +2,8 @@
 @import "public/assets/base/grid-settings";
 @import 'bower_components/neat/app/assets/stylesheets/neat';
 @import 'public/assets/base/base';
+@import "map-action-button";
+
 
 $base-font-color:$dark-grey;
 
@@ -48,6 +50,16 @@ header.peakaboo{
 
   &.mini .header-title{
     margin-bottom: 0;
+
+    .chapter-title a{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 66vw;
+      position: relative;
+      display: inline-block;
+    }
+
     .logo{
       left: -2em;
       position: relative;

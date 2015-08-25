@@ -2,6 +2,22 @@
 
 $overview-map-height: calc( 100vh - 10em);
 
+.tour-list > article.tour-intro .directions{
+  padding: 0;
+}
+
+.map-icon-action{
+  @extend %map-icon-button;
+  @include backface-visibility(hidden);
+  @include transform(rotateY(0deg));
+
+  span.fa{
+    font-size: 70%;
+    line-height: 1.8;
+  }
+}
+
+
 #map-overview{
   min-height: $overview-map-height;
 }
@@ -38,7 +54,7 @@ $overview-map-height: calc( 100vh - 10em);
     float:left;
     width: 100%;
     position: relative;
-    min-height: $overview-map-height;
+    min-height: 100vh;
 
     #map{
       height: 100%;

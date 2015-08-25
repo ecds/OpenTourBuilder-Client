@@ -24,9 +24,6 @@
           <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
         {{/if}}
     {{/each}}
-    {{#if model.geospatial}}
-      <a href="#" {{action 'goToLink' stop.tour_slug "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
-    {{/if}}
   </nav>
 </div>
 
@@ -48,10 +45,29 @@
               <div class="container">
                 <header>
                     <h2 class="tour-section-heading">{{stop.name}}</h2>
+
+                    {{#if model.geospatial}}
+                    <div class="tour-section-thumbnail">
+                        <a href="#" {{action 'openStopMap' stop}}>
+                          <span class="map-icon-action"><span class="fa fa-map-o"></span></span>
+                        </a>
+                    </div>
+                    {{/if}}
                 </header>
                 <section class="description">
                   {{{stop.description}}}
                 </section>
+                <section class="directions">
+                  {{#if model.geospatial}}
+                  <article class="tour-map" id="map-overview">
+                    <header>
+                        <h3 class="tour-section-header">Map Overview</h3>
+                    </header>
+                    {{overview-map model=model}}
+                  </article>
+                  {{/if}}
+                </section>
+
               </div>
             </article>
 
@@ -92,17 +108,6 @@
           {{/if}}
 
       {{/each}}
-
-      {{#if model.geospatial}}
-      <article class="tour-section tour-map" id="map-overview">
-        <div  class="container">
-          <header>
-              <h2 class="tour-section-header">Map Overview</h2>
-          </header>
-        </div>
-        {{overview-map model=model}}
-      </article>
-      {{/if}}
 
     </section>
 

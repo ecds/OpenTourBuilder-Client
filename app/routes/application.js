@@ -27,8 +27,8 @@ export default Ember.Route.extend({
                 href = href +'?stop='+index;
               }
               window.history.pushState({},"", href);
-
-              Ember.$('body').animate({scrollTop:$elem.offset().top-80},500);
+              Ember.$("#open-button").click();
+              Ember.$('body').animate({scrollTop:$elem.offset().top-100},500);
             }
        },
 

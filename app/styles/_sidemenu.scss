@@ -1,13 +1,17 @@
 $link_color:#b8b7ad;
-$menu_width:300px;
+$menu_width:250px;
+
+.show-menu{
+  overflow-x: hidden;
+}
 
 .show-menu .content-wrap{
-  width: calc(100% - #{$menu_width});
+  width: 100vw;
 }
 
 .content-wrap {
   overflow-y: scroll;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   left:0;
   top:0;
@@ -72,6 +76,7 @@ $menu_width:300px;
 .menu-wrap{
   position: fixed;
   height: 100%;
+  height: 100vh;
   overflow: scroll;
   z-index: 10;
   font-weight: 700;
