@@ -23,7 +23,7 @@ $stop-min-height:80vh;
   float:left;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
 
   &>article{
     display: block;
@@ -40,16 +40,22 @@ $stop-min-height:80vh;
     &.tour-intro{
       min-height: 0;
       padding-bottom: 2em;
+
       .container header{
         background-color: $intro-header-background-color;
         color: $intro-header-color;
-        padding: 0 4.5rem;
+        padding: 0 1.5rem;
+
+        .tour-section-thumbnail a{
+          border-color:$intro-header-background-color;
+          margin-right: -15px;
+        }
       }
       .description{
           @include container;
           width: auto;
           padding: 0;
-          padding-top: 1em;
+          padding-top: 1.5em;
       }
     }
 
@@ -185,6 +191,17 @@ $stop-min-height:80vh;
 
 
     &{
+      
+      .adp {
+        font-size: 80%;
+        line-height: initial;
+      }
+
+      td.adp-text {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
       .map-canvas, .direction-list{
         &::after{
           content: '';
@@ -333,16 +350,7 @@ $stop-min-height:80vh;
     .tour-section-thumbnail a{
       &::before{
         content: '\f129';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        font-size: 5em;
-        z-index: 0;
-        text-align: center;
-        line-height: 1;
-        background-color: #F5F5F5;
-        color: #D0D0D0;
-        border-radius: 50%;
+        @extend %map-icon-button;
         // Font Awesome
         font-family: "FontAwesome";
         speak: none;
@@ -354,9 +362,6 @@ $stop-min-height:80vh;
         /* Better Font Rendering =========== */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        @include transform(rotateY(-180deg));
-
-        @include transition(transform 0.5s ease);
         }
       }
     }
@@ -366,7 +371,7 @@ $stop-min-height:80vh;
         &::before{
           @include transform(rotateY(0deg));
         }
-        img{
+        img, .map-icon-action{
           @include transform(rotateY(180deg));
         }
       }
