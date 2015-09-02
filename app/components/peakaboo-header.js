@@ -57,24 +57,24 @@ export default Ember.Component.extend({
         var elemTop = $article.offset().top;
         var elemBottom = elemTop + $article.height()+clearance;
 
-        var index = $article.index();
-        var index_from_qs = parseInt(location.search.replace('?stop=',''));
-        var href = '';
+        // var index = $article.index();
+        // var index_from_qs = parseInt(location.search.replace('?stop=',''));
+        // var href = '';
 
-        if(isNaN(index_from_qs) === false && index===0){
-          href = location.href.replace(location.search,'');
-          window.history.replaceState({},"", href);
-        }
+        // if(isNaN(index_from_qs) === false && index===0){
+        //   href = location.href.replace(location.search,'');
+        //   window.history.replaceState({},"", href);
+        // }
 
-        else if(isNaN(index_from_qs) === true && index === 1){
-          href = location.href+'?stop='+index;
-          window.history.replaceState({},"", href);
-        }
+        // else if(isNaN(index_from_qs) === true && index === 1){
+        //   href = location.href+'?stop='+index;
+        //   window.history.replaceState({},"", href);
+        // }
 
-        else if(isNaN(index_from_qs) === false && index_from_qs!==index){
-          href = location.href.replace(location.search,'?stop='+index);
-          window.history.replaceState({},"", href);
-        }
+        // else if(isNaN(index_from_qs) === false && index_from_qs!==index){
+        //   href = location.href.replace(location.search,'?stop='+index);
+        //   window.history.replaceState({},"", href);
+        // }
 
         if((docViewBottom > elemBottom ) && (docViewTop >= elemTop) ){
           $article.css({'height': $article.height()});

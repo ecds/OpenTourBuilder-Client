@@ -22,11 +22,11 @@ export default Ember.Route.extend({
 
           if(elem[parseInt(stop_number)]){
             elem = elem[parseInt(stop_number)];
-            Ember.$('body').animate({scrollTop:Ember.$(elem).offset().top-80},0);
+            Ember.$('html,body').animate({scrollTop:Ember.$(elem).offset().top-80},0);
           }
         }
         else{
-          Ember.$('body').scrollTop(0);
+          Ember.$('html,body').scrollTop(0);
         }
 
       });

@@ -18,23 +18,28 @@ export default Ember.Route.extend({
               this.transitionTo('tour',tour_slug, {queryParams:{stop:index}});
               var $window = Ember.$('window');
               $window.scrollTop($window.scrollTop()+1);
+              Ember.$("#open-button").click();
             }
-            else{
-              if(location.search){
-                href = href.replace(location.search,'?stop='+index);
-              }
-              else{
-                href = href +'?stop='+index;
-              }
+            // else{
+
               window.history.pushState({},"", href);
 
-              Ember.$('body').animate({scrollTop:$elem.offset().top-80},500);
-            }
+              Ember.$("#open-button").click();
+              Ember.run.later(this, function() {
+                  Ember.$('html,body').animate({scrollTop:$elem.offset().top-80});
+              }, 1000);
+              Ember.run.later(this, function() {
+                  Ember.$('.tour-section').addClass('stuck').addClass('stuck-bottom');
+                  Ember.$(anchor).removeClass('stuck').removeClass('stuck-bottom');
+                  window.history.pushState({},"", tour_slug+"?stop="+index);
+              }, 1500);
+
+            // }
        },
 
        openStopMap: function(stop) {
 
-           var slug = stop.get('id'),
+           var slug = stop.get('slug'),
                elem = "#"+slug,
                $elem = Ember.$(elem),
                $directions = Ember.$(elem+" .direction-list .adp");

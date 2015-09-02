@@ -8,7 +8,7 @@
         {{#each stop in model}}
             {{#if stop.published}}
             <li>
-                <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}>{{stop.name}}</a>
+                <a href="#" {{action 'goToLink' stop.tour_slug stop.slug}}>{{stop.name}}</a>
                 <p>{{{truncate-text stop.description}}}</p>
             </li>
             {{else}}

@@ -19,13 +19,13 @@
   <nav class="menu-side">
     {{#each stop in model.stop_ids}}
         {{#if stop.intro}}
-          <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
+          <a href="javascript:void(0)" {{action 'goToLink' stop.tour_slug stop.slug}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
         {{else}}
-          <a href="#" {{action 'goToLink' stop.tour_slug stop.id}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
+          <a href="javascript:void(0)" {{action 'goToLink' stop.tour_slug stop.slug}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
         {{/if}}
     {{/each}}
     {{#if model.geospatial}}
-      <a href="#" {{action 'goToLink' stop.tour_slug "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
+      <a href="javascript:void(0)" {{action 'goToLink' stop.tour_slug "map-overview"}}><span class="fa fa-fw fa-map-marker"></span> Map Overview</a>
     {{/if}}
   </nav>
 </div>
@@ -44,7 +44,7 @@
       {{#each stop in model.stop_ids}}
 
           {{#if stop.intro}}
-            <article class="tour-intro tour-section" {{bind-attr id="stop.id"}}>
+            <article class="tour-intro tour-section" {{bind-attr id="stop.slug"}}>
               <div class="container">
                 <header>
                     <h2 class="tour-section-heading">{{stop.name}}</h2>
@@ -56,7 +56,7 @@
             </article>
 
           {{else}}
-            <article class="tour-stop tour-section" {{bind-attr id="stop.id"}}>
+            <article class="tour-stop tour-section" {{bind-attr id="stop.slug"}}>
               <div  class="container">
                 <header>
                   <div class="prefix">
@@ -67,7 +67,7 @@
 
                   {{#if model.geospatial}}
                   <div class="tour-section-thumbnail">
-                      <a href="#" {{action 'openStopMap' stop}}>
+                      <a href="javascript:void(0)" {{action 'openStopMap' stop}}>
                         <img {{bind-attr src=stop.map_image}}/>
                       </a>
                   </div>

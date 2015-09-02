@@ -10,7 +10,7 @@ function drawMap(stop){
     if(typeof(selectedMode) === "undefined"){
       selectedMode = 'WALKING';
     }
-    var slug = stop.get('id'),
+    var slug = stop.get('slug'),
         elem = "#"+slug,
         lat = stop.get('lat'),
         lng = stop.get('lng');
