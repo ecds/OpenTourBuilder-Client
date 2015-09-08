@@ -1,6 +1,5 @@
 // app/routes/index.js
 import Ember from "ember";
-import DS from "ember-data";
 /* global drawMap */
 
 export default Ember.Route.extend({

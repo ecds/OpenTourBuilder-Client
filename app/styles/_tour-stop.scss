@@ -38,7 +38,7 @@ $stop-min-height:80vh;
     @include transition(box-shadow 1s ease, background-color 1s ease);
 
     &.tour-intro{
-      min-height: 0;
+      // min-height: 0;
       padding-bottom: 2em;
 
       .container header{
@@ -50,6 +50,7 @@ $stop-min-height:80vh;
           border-color:$intro-header-background-color;
           margin-right: -15px;
         }
+
       }
       .description{
           @include container;
@@ -67,6 +68,12 @@ $stop-min-height:80vh;
 
       header, &>section{
         @include wrapper;
+      }
+
+      .scroll-hint {
+        text-align: center;
+        font-size: 5em;
+        padding-top: 1em;
       }
 
       header{
@@ -191,7 +198,7 @@ $stop-min-height:80vh;
 
 
     &{
-      
+
       .adp {
         font-size: 80%;
         line-height: initial;
