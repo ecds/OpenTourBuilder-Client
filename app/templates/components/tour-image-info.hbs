@@ -1,0 +1,18 @@
+{{yield}}
+
+<div class="tour">
+  <picture>
+    <source media="(min-width: 993px)" {{bind-attr srcset=tour.desktop_splash}} />
+
+    <source media="(min-width: 767px)" {{bind-attr srcset=tour.tablet_splash}} />
+
+    <img {{bind-attr src=tour.phone_splash}} />
+  </picture>
+  <section class="copy">
+    <div class="inner">
+      <h2>{{tour.name}}</h2>
+      <p>{{{tour.description}}}</p>
+      {{#link-to 'tour' tour classNames="btn btn-primary"}}Start Tour{{/link-to}}
+    </div>
+  </section>
+</div>

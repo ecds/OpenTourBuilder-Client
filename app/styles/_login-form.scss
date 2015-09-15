@@ -1,0 +1,18 @@
+div.login-form {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5em;
+
+    form {
+      input label {
+        margin: .25em 1em;
+      }
+      label {
+        padding-top: .5em;
+      }
+      button {
+        margin-top: 1em;
+      }
+    }
+}

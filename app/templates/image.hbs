@@ -1,0 +1,16 @@
+  <div class="image-detail">
+    <h2>{{model.title}}</h2>
+    <picture>
+      <source media="(min-width: 650px)" {{bind-attr srcset=model.desktop_full}} />
+
+      <source media="(min-width: 465px)" {{bind-attr srcset=model.tablet_full}} />
+
+      <img {{bind-attr src=model.phone_full}} />
+    </picture>
+    <div>
+      <p>{{model.caption}}</p>
+      <a {{bind-attr href=model.original_image}}>
+        See lager image {{model.size}}
+      </a>
+    </div>
+  </div>

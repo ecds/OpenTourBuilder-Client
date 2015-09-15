@@ -1,0 +1,109 @@
+@media print {
+
+  .menu-button{
+    display: none!important;
+  }
+
+  header.peakaboo .header-title a{
+    text-shadow: none!important;
+  }
+  header.peakaboo{
+    position: relative!important;
+    width: 100%;
+    float:none;
+    display: block!important;
+
+    &.mini{
+      display: none!important;
+    }
+
+    .wrapper{
+      margin-left: 1em!important;
+      margin-right: 1em!important;
+    }
+  }
+
+  .tour-list > article.tour-intro .container header{
+    padding: 0 1rem;
+  }
+
+  .tour-list > article .container header .prefix .stop-number{
+    font-weight: bold;
+    color:$light-grey;
+  }
+
+  body,.tour-detail,.content-wrap, .menu-wrap{
+    float:none;
+    overflow:visible!important;
+  }
+
+  .tour-list{
+    float:none;
+    overflow:visible!important;
+
+    &> article.tour-section{
+      position: relative!important;
+      width: 90%;
+      height: auto!important;
+      overflow:visible!important;
+      float:none;
+      display: block;
+      page-break-after: always;
+
+
+      .container header .tour-section-thumbnail{
+        display: none;
+      }
+
+      .description, .directions{
+        display: block;
+        position: relative;
+        float:none;
+        width: 100%;
+        right: 0;
+      }
+
+      .directions{
+
+        .selectize-control, .new-directions-button, .tabs, .map-canvas, .direction-list{
+          display: none;
+        }
+        .direction-notes{
+          float:none;
+          position: relative;
+          max-height: none;
+          height: auto;
+          overflow: auto;
+          margin: auto;
+        }
+      }
+
+      .swiper-slide {
+        // float: left;
+        display: inline-block;
+        width: auto!important;
+        margin: auto !important;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .swiper-slide-duplicate, .swiper-pagination, .swiper-button-next, .swiper-button-prev{
+        display: none;
+      }
+
+      .swiper-container.swiper-container-horizontal {
+          overflow: auto;
+          height: auto;
+          max-height: none;
+      }
+
+      .swiper-wrapper {
+          height: 100%;
+          float: left;
+          display: block;
+          transform: translate3d(0,0,0)!important;
+          position: relative;
+      }
+
+    }//end article
+  }
+}

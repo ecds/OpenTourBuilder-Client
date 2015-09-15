@@ -1,0 +1,116 @@
+<div class="menu-wrap">
+  <nav class="menu-top">
+    <div class="icon-list">
+      <a id="tours-home" href="/" title="Tour Lists"><span class="fa fa-fw fa-sign-out fa-flip-horizontal"></span></a>
+      {{#if model.info_ids}}
+        {{#link-to 'tour' model.slug title='Tour Home' id="tour-home-link"}}<span class="fa fa-fw fa-home"></span>{{/link-to}}
+        {{#each info in model.info_ids}}
+          {{#link-to 'tour_info' info title=info.name}}<span {{bind-attr class=":fa :fa-fw info.icon"}}></span>{{/link-to}}
+        {{/each}}
+      {{/if}}
+      <form class="search-bar" role="search">
+        <input type="search" placeholder="Enter Search" class="tour-search"/>
+        <button type="submit" {{action 'search'}}>
+          <span class="fa fa-fw fa-search"></span>
+        </button>
+      </form>
+    </div>
+  </nav>
+  <nav class="menu-side">
+    {{#each stop in model.stop_ids}}
+        {{#if stop.intro}}
+          <a href="#" {{action 'goToLink' stop.tour_slug stop.slug}}><span class="fa fa-fw fa-star-o"></span> {{stop.name}}</a>
+        {{else}}
+          <a href="#" {{action 'goToLink' stop.tour_slug stop.slug}}><span class="number-icon">{{stop.position}}</span> {{stop.name}}</a>
+        {{/if}}
+    {{/each}}
+  </nav>
+</div>
+
+<button class="menu-button" id="open-button">Open Menu</button>
+<div class="content-wrap">
+
+  {{peakaboo-header model=model}}
+
+  {{outlet "info"}}
+
+  {{outlet "search"}}
+
+  <div class="tour-detail">
+    <section class="tour-list">
+      {{#each stop in model.stop_ids}}
+
+          {{#if stop.intro}}
+            <article class="tour-intro tour-section" {{bind-attr id="stop.slug"}}>
+              <div class="container">
+                <header>
+                    <h2 class="tour-section-heading">{{stop.name}}</h2>
+
+                    {{#if model.geospatial}}
+                    <div class="tour-section-thumbnail">
+                        <a href="#" {{action 'openStopMap' stop}}>
+                          <span class="map-icon-action"><span class="fa fa-map-o"></span></span>
+                        </a>
+                    </div>
+                    {{/if}}
+                </header>
+                <section class="description">
+                  {{{stop.description}}}
+                </section>
+                <section class="directions">
+                  {{#if model.geospatial}}
+                  <article class="tour-map" id="map-overview">
+                    <header>
+                        <h3 class="tour-section-header">Map Overview</h3>
+                    </header>
+                    {{overview-map model=model}}
+                  </article>
+                  {{/if}}
+                </section>
+                <div class="scroll-hint"><i class="fa fa-chevron-down"></i></div>
+              </div>
+
+            </article>
+
+          {{else}}
+            <article class="tour-stop tour-section" {{bind-attr id="stop.slug"}}>
+              <div  class="container">
+                <header>
+                  <div class="prefix">
+                    <span class="stop-number">{{stop.position}}</span>
+                  </div>
+
+                  <h2 class="tour-section-heading"> {{stop.name}}</h2>
+
+                  {{#if model.geospatial}}
+                  <div class="tour-section-thumbnail">
+                      <a href="#" {{action 'openStopMap' stop}}>
+                        <img {{bind-attr src=stop.map_image}}/>
+                      </a>
+                  </div>
+                  {{/if}}
+                </header>
+
+                <div class="wrapper">
+                  <section class="description">
+                    {{tour-slider stop=stop}}
+                    <div class="container">
+                      {{{stop.description}}}
+                    </div>
+                  </section>
+
+                  <section class="directions">
+                      {{tour-directions stop=stop notes=stop.direction_notes intro=stop.directions_intro}}
+                  </section>
+                </div>
+
+              </div>
+            </article>
+          {{/if}}
+
+      {{/each}}
+
+    </section>
+
+  </div>
+</div>

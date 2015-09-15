@@ -1,0 +1,13 @@
+{{yield}}
+<header class="peakaboo">
+  <div class="wrapper">
+    <div class="header-title">
+      {{#if logo}}
+      <span class="logo">
+        <img {{bind-attr src=logo}} />
+      </span>
+      {{/if}}
+      <span>{{name}}</span>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,26 @@
+{{modal}}
+
+{{#if stop}}
+  <a class="fancybox fancybox-media" data-fancybox-type="iframe" href="https://www.youtube.com/embed/{{unbound stop.video_embed}}">
+    <picture>
+      <source media="(min-width: 650px)" {{bind-attr srcset=stop.desktop_poster}} />
+
+      <source media="(min-width: 465px)" {{bind-attr srcset=stop.tablet_poster}} />
+
+      <img {{bind-attr src=stop.phone_poster}} />
+    </picture>
+  </a>
+
+{{else}}
+
+<a class="fancybox" data-fancybox-type="iframe" href="/image/{{image.id}}">
+  <picture>
+    <source media="(min-width: 650px)" {{bind-attr srcset=image.desktop_thumb}} />
+
+    <source media="(min-width: 465px)" {{bind-attr srcset=image.tablet_thumb}} />
+
+    <img {{bind-attr src=image.phone_thumb}} />
+  </picture>
+</a>
+
+{{/if}}

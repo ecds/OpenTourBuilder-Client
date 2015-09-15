@@ -1,0 +1,25 @@
+{{yield}}
+<div class="swiper-container">
+  <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+        {{#if stop.video_embed}}
+          <div class="swiper-slide">
+               {{image-modal stop=stop}}
+          </div>
+        {{/if}}
+
+        {{#each image in stop.images}}
+          <div class="swiper-slide">
+            {{image-modal image=image}}
+          </div>
+        {{/each}}
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+</div>

@@ -1,0 +1,42 @@
+// Mixins
+
+@mixin button-color-variant($color){
+  &:hover, &:focus{
+    background-color: darken($color,20%)
+  }
+
+  @if lightness($color) > 70% {
+    color: $lightbg-text;
+
+    &:hover, &:focus{
+      color: lighten($lightbg-text,20%);
+    }
+  } @else {
+    color: $darkbg-text;
+
+    &:hover, &:focus{
+      color: lighten($darkbg-text,20%);
+    }
+  }
+}
+
+@mixin material-icon{
+  text-align:center;
+  font-family: "Material-Design-Icons";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+@mixin column-count($columns){
+  -webkit-column-count: $columns; /* Chrome, Safari, Opera */
+  -moz-column-count: $columns; /* Firefox */
+  column-count: $columns;
+}

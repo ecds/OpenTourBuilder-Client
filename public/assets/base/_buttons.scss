@@ -1,0 +1,238 @@
+#{$all-button-inputs},
+button {
+  @include appearance(none);
+  -webkit-font-smoothing: antialiased;
+  background-color: $action-color;
+  border-radius: $base-border-radius;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.75em 1em;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background-color: darken($action-color, 15%);
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@mixin btn-shadow(){
+    @extend .shadow-z-2;
+    transition: box-shadow transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    &:active:not(.btn-link) {
+        @extend .shadow-z-3;
+    }
+
+    &:hover {
+        @extend .shadow-z-5;
+    }
+
+}
+
+@mixin button-variant($color) {
+    background-color: $color;
+    
+    // Flat Buttons
+    &.btn-flat{
+      @extend .shadow-z-0;
+      background-color:transparent;
+      @include transition(background-color, 0.2s);
+      border-color: $color;
+      color: $color;
+      &:hover, &:focus{
+        background-color: lighten($color, 20%);
+        background-color: color-opacity($color, 0.2);
+      }
+    }
+    
+    // Floating Action Button (FAB)
+    &.btn-fab {
+        @extend .shadow-z-2;
+        margin: 0;
+        padding: 15px;
+        font-size: 26px;
+        width: 56px;
+        height: 56px;
+        
+        &, &:hover {
+            //.variations(#{""}, background-color, transparent);
+        }
+        &, .ripple-wrapper {
+            border-radius: 100%;
+        }
+        &.btn-mini {
+            width: 40px;
+            height: 40px;
+            padding: 13px;
+            font-size: 15px;
+        }
+    }
+}
+
+.btn {
+    position: relative;
+    padding: 0.5em 1em;
+    font-size:90%;
+    border: 0;
+    margin: 10px 1px;
+    display:inline-block;
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $darkbg-text;
+
+    &:hover, &:focus {
+        color: $darkbg-text;
+    }
+    &:hover:not(.btn-link) {
+        @extend .shadow-z-2:hover;
+    }
+    transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    &:active:not(.btn-link) {
+        @extend .shadow-z-3;
+    }
+    outline: none !important;
+}
+// This is needed to style buttons which has not a variation suffix (they must stiled as btn-default)
+.btn-link, .btn:not([class^="btn btn-"]), .btn-default {
+    color: $lightbg-text;
+    &:hover, &:focus {
+        color: $lightbg-text;
+    }
+}
+.btn:not([class^="btn btn-"]), .btn-default {
+    &:hover {
+        background-color: rgba(255,255,255,0.5);
+    }
+}
+
+.btn-raised {
+    @include btn-shadow();
+}
+
+.btn-flat {
+    box-shadow: none !important;
+    &.btn-default:hover {
+        background: none;
+    }
+}
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    border-radius: 4px;
+    margin: 10px 1px;
+
+    @include btn-shadow();
+    &.open .dropdown-toggle {
+        box-shadow: none;
+    }
+    &.btn-group-raised {
+        @include btn-shadow();
+    }
+    .btn, .btn:active, .btn-group {
+        box-shadow: none !important;
+        margin: 0;
+    }
+    .btn:active .caret { margin-left: -1px; }
+}
+.btn-group-flat {
+    box-shadow: none !important;
+}
+
+
+// Alert buttons
+// --------------------------------------------------
+
+.btn-default {
+  @include button-variant($btn-default);
+  &.btn-flat{
+    color:$base-font-color;
+  }
+}
+.btn-primary {
+  @include button-variant($primary);
+}
+// Success appears as green
+.btn-success {
+  @include button-variant($success);
+}
+// Info appears as blue-green
+.btn-info {
+  @include button-variant($info);
+}
+// Warning appears as orange
+.btn-warning {
+  @include button-variant($warning);
+}
+// Danger and error appear as red
+.btn-danger {
+  @include button-variant($danger);
+}
+
+// Material shades
+.btn-material-red {
+    @include button-variant($red)
+}
+.btn-material-pink {
+    @include button-variant($pink);
+}
+.btn-material-purple {
+    @include button-variant($purple);
+}
+.btn-material-deep-purple {
+    @include button-variant($deep-purple);
+}
+.btn-material-indigo {
+    @include button-variant($indigo);
+}
+.btn-material-light-blue {
+    @include button-variant($light-blue);
+}
+.btn-material-cyan {
+    @include button-variant($cyan);
+}
+.btn-material-teal {
+    @include button-variant($teal);
+}
+.btn-material-light-green {
+    @include button-variant($light-green);
+}
+.btn-material-lime {
+    @include button-variant($lime);
+}
+.btn-material-light-yellow {
+    @include button-variant($yellow-300);
+}
+.btn-material-orange {
+    @include button-variant($orange);
+}
+.btn-material-deep-orange {
+    @include button-variant($deep-orange);
+}
+.btn-material-grey {
+    @include button-variant($grey);
+}
+.btn-material-blue-grey {
+    @include button-variant($blue-grey);
+}
+.btn-material-brown {
+    @include button-variant($brown);
+}
+.btn-material-light-grey {
+    @include button-variant($light-grey);
+}

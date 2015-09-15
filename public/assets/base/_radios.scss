@@ -1,0 +1,123 @@
+// Radio Buttons
+
+$radio-default: $blue;
+
+$radio-size: 20px;
+
+.radio {
+    label {
+        cursor: pointer;
+        padding-left: 45px;
+        position: relative;
+        
+        span {
+            display: block;
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            transition-duration: 0.2s;
+        }
+        
+        .circle {
+            border: 2px solid $lightbg-text;
+            height: $radio-size;
+            width: $radio-size;
+            border-radius: 100%;
+        }
+        
+        .check {
+            height: $radio-size;
+            width: $radio-size;
+            border-radius: 100%;
+            background-color: $radio-default;
+            transform: scale(0);
+        
+          &:after {
+              display: block;
+              position: absolute;
+              content: "";
+              background-color: lighten($radio-default,20%);
+              left: -16px;
+              top: -16px;
+              height: 50px;
+              width: 50px;
+              border-radius: 100%;
+              z-index: 1;
+              opacity: 0;
+              margin: 0;
+              transform: scale(1.5);
+          }
+        }
+        
+        input[type=radio]:not(:checked) ~ .check:after {
+          @include animation(rippleOff 500ms);
+        }
+        
+        input[type=radio]:checked {
+          &~ .circle{
+            border-color: $radio-default;
+          }
+          &~ .check{
+            &:after {
+              @include animation(rippleOn 500ms);
+            }
+          }
+        }
+
+    }
+
+    input[type=radio][disabled] ~ .check,
+    input[type=radio][disabled] ~ .circle {
+        opacity: 0.5;
+    }
+
+    input[type=radio] { display: none; }
+    input[type=radio]:checked ~ .check {
+        transform: scale(0.55);
+    }
+    input[type=radio][disabled] ~ .circle {
+        border-color: $lightbg-text;
+    }
+    input[type=radio][disabled] ~ .check {
+        background-color: $lightbg-text;
+    }
+    
+    // Make animate quickly when not hover
+    &:not(:hover) input[type=checkbox] ~ .check {
+        &:before, &:after {
+            animation-duration: 1ms;
+        }
+    }
+    
+    // Ripple effect on click
+    input[type=checkbox]:not(:checked) ~ .check:after {
+      @include animation( rippleOff 500ms linear forwards);
+    }
+    input[type=checkbox]:checked ~ .check:after {
+      @include animation(rippleOn 500ms linear forwards);
+    }
+}
+
+@keyframes rippleOn {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rippleOff {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}

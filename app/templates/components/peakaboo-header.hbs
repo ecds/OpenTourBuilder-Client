@@ -1,0 +1,17 @@
+{{yield}}
+<header class="peakaboo">
+  <div class="wrapper">
+    <div class="header-title">
+      {{#if logo}}
+      <span class="logo">
+        <img {{bind-attr src=logo}} />
+      </span>
+      {{/if}}
+      {{#if model}}
+      <span class="chapter-title">{{#link-to 'tour' model.slug title='Home'}}{{model.name}}{{/link-to}}</span>
+      {{else}}
+      <span class="chapter-title">{{name}}</span>
+      {{/if}}
+    </div>
+  </div>
+</header>

@@ -1,0 +1,14 @@
+<article id="home-content">
+
+  {{home-header name='Tours List' logo='/assets/images/logo.png'}}
+
+  {{#each tour in this.model}}
+
+    <section {{bind-attr class=":panel tour.slug"}}>
+
+        {{tour-image-info tour=tour}}
+
+    </section>
+
+  {{/each}}
+</article>

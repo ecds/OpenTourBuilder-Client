@@ -1,0 +1,317 @@
+// Checkboxes
+
+$checkbox-default: $blue;
+
+.form-horizontal .checkbox {
+  padding-top: 20px;
+}
+.checkbox{
+
+    label {
+      padding-left: 0px;
+      cursor: pointer;
+      position: relative;
+      
+      input[type=checkbox]:not(:checked) ~ .ripple {
+        @include animation(rippleOff 500ms);
+      }
+      input[type=checkbox]:checked ~ .ripple {
+        @include animation(rippleOn 500ms);
+      }
+
+      span {
+        display: block;
+        position: absolute;
+        left: 0px;
+        transition-duration: 0.2s;
+      }
+      .ripple {
+        display: block;
+        position: absolute;
+        content: "";
+        background-color: lighten($checkbox-default, 20%);
+        left: -4px;
+        top: -11px;
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        z-index: 1;
+        opacity: 0;
+        margin: 0;
+      }
+
+      .check {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          border: 2px solid;
+          border-radius: 2px;
+          overflow: hidden;
+          position: relative;
+          top: 5px;
+          left: -3px;
+          margin-right: 6px;
+          
+        &:after {
+          display: block;
+          position: absolute;
+          content: "";
+          background-color: rgba(0, 0, 0, 0.84);
+          left: -5px;
+          top: -15px;
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          z-index: 1;
+          opacity: 0;
+          margin: 0;
+        }
+        &:before {
+          position: absolute;
+          content: "";
+          @include transform(rotate(45deg));
+          display: block;
+          margin-top: -4px;
+          margin-left: 6px;
+          width: 0;
+          height: 0;
+          box-shadow: 0 0 0 0,
+                        0 0 0 0,
+                        0 0 0 0,
+                        0 0 0 0,
+                        0 0 0 0,
+                        0 0 0 0,
+                        0px 0px 0 0px inset;
+          @include animation(checkbox-off 0.3s linear forwards);
+        }
+      }
+    }
+
+    input[type=checkbox] {
+      opacity: 0;
+      
+      [disabled]:not(:checked) ~ .check:before,
+      [disabled] ~ .circle {
+        opacity: 0.5;
+      }
+      [disabled] ~ .check:after {
+        background-color: rgba(0, 0, 0, 0.84);
+        @include transform(rotate(-45deg));
+      }
+      
+      &:focus{
+        &~ .check{
+          &:after{
+            opacity: 0.2;
+          }
+        }
+      }
+      &:checked{
+        &~ .check{
+          &:before{
+            box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+            @include animation(checkbox-on 0.3s linear forwards);
+          }
+          &:after{
+            @include animation(rippleOn 500ms linear forwards);
+          }
+        }
+      }
+      &:not(:checked){
+        &~ .check{
+          &:after{
+            @include animation(rippleOff 500ms linear forwards);
+          }
+        }
+      }
+      
+    }
+    
+    // Ripple effect on click
+    input[type=checkbox]:not(:checked) ~ .check:after {
+      @include animation(rippleOff 500ms linear forwards);
+    }
+    input[type=checkbox]:checked ~ .check:after {
+      @include animation(rippleOn 500ms linear forwards);
+    }
+
+    // Make animate quickly when not hover
+    &:not(:hover) input[type=checkbox] ~ .check {
+        &:before, &:after {
+          @include animation-duration(1ms);
+        }
+    }
+
+    // Style for disabled inputs
+    input[type=checkbox][disabled]:not(:checked) ~ .check:before,
+    input[type=checkbox][disabled] ~ .circle {
+        opacity: 0.5;
+    }
+    input[type=checkbox][disabled] ~ .check:after {
+        background-color: $lightbg-text;
+        @include transform(rotate(-45deg));
+    }
+
+    input[type=checkbox]:checked ~ .check{ 
+      color: $checkbox-default;
+      
+      &:after{ background-color: $checkbox-default; }
+      &:before{ color: $checkbox-default; }
+    }
+}
+
+
+@-webkit-keyframes checkbox-on {
+  0% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+  }
+  50% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+  }
+  100% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+  }
+}
+@keyframes checkbox-on {
+  0% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+  }
+  50% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+  }
+  100% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+  }
+}
+@-webkit-keyframes checkbox-off {
+  0% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+  }
+  25% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+  }
+  50% {
+    @include transform(rotate(45deg));
+    margin-top: -4px;
+    margin-left: 6px;
+    width: 0px;
+    height: 0px;
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
+  }
+  51% {
+    @include transform(rotate(0deg));
+    margin-top: -2px;
+    margin-left: -2px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 10px inset;
+  }
+  100% {
+    @include transform(rotate(0deg));
+    margin-top: -2px;
+    margin-left: -2px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 0px inset;
+  }
+}
+@keyframes checkbox-off {
+  0% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+  }
+  25% {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+  }
+  50% {
+    @include transform(rotate(45deg));
+    margin-top: -4px;
+    margin-left: 6px;
+    width: 0px;
+    height: 0px;
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
+  }
+  51% {
+    @include transform(rotate(0deg));
+    margin-top: -2px;
+    margin-left: -2px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 10px inset;
+  }
+  100% {
+    @include transform(rotate(0deg));
+    margin-top: -2px;
+    margin-left: -2px;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0 0 0 0,
+            0px 0px 0 0px inset;
+  }
+}
+@-webkit-keyframes rippleOn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rippleOn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes rippleOff {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rippleOff {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}

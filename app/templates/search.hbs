@@ -1,0 +1,21 @@
+<article class="tour-info">
+  <header>
+    <h2 class="tour-info-heading">Search Results{{params.searchTerm}}</h2>
+  </header>
+  <section class="description">
+
+    <ul>
+        {{#each stop in model}}
+            {{#if stop.published}}
+            <li>
+                <a href="#" {{action 'goToLink' stop.tour_slug stop.slug}}>{{stop.name}}</a>
+                <p>{{{truncate-text stop.description}}}</p>
+            </li>
+            {{else}}
+            {{/if}}
+        {{else}}
+            <h3>Sorry, no results for your search.</h3>
+        {{/each}}
+    </ul>
+  </section>
+</article>
