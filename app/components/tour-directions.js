@@ -1,6 +1,4 @@
 import Ember from 'ember';
-import DS from 'ember-data';
-/* global google */
 /* global Cookies */
 /* global drawMap */
 

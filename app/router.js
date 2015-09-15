@@ -14,6 +14,7 @@ Router.map(function() {
     this.resource('search', {path: '/search/:searchTerm'});
   });
 
+  this.route('login');
 });
 
 export default Router;

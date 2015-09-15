@@ -15,7 +15,8 @@
     "bourbon": "4.2.1",
     "neat": "~1.7.2",
     "select2": "3.5.2",
-    "selectize": "~0.12.1"
+    "selectize": "~0.12.1",
+    "ember-simple-auth": "0.8.0"
   },
   "devDependencies": {
     "js-cookie": "~1.5.1",

@@ -11,7 +11,6 @@ export default Ember.Route.extend({
     didTransition: function() {
       Ember.run.schedule('afterRender', function() {
         if(!Ember.$("body").hasClass('show-menu')){
-          menuInit();
         }
         else{
           Ember.$("#open-button").click();

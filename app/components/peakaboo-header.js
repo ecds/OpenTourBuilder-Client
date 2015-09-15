@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 
     $mini.insertAfter($peakaboo);
 
-    var scrollTimer = null;
+    // var scrollTimer = null;
 
     Ember.$(window).scroll(function () {
         handleScroll();

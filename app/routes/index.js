@@ -4,6 +4,11 @@ import Ember from "ember";
 
 export default Ember.Route.extend({
    model: function() {
-    return this.store.find('tourList');
+     if (this.controllerFor("application").get("isLoggedIn")) {
+       return this.store.find('tourList');
+     }
+     else {
+       return this.store.query('tourList', {published: 'True'});
+     }
   }
 });

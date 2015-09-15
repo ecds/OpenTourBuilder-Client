@@ -20,7 +20,7 @@ export default Ember.Component.extend({
 
       if (parallaxImages.length) {
         Ember.$(window).off('scroll');
-        Ember.$(window).on('scroll',function(e) {
+        Ember.$(window).on('scroll',function(/* e */) {
           window.requestAnimationFrame(function(){
             Ember.$.each(parallaxImages, function(index, parallaxImage) {
               parallax(parallaxImage);
@@ -63,7 +63,7 @@ export default Ember.Component.extend({
     }
 
     if (!window.requestAnimationFrame){
-        window.requestAnimationFrame = function(callback, element) {
+        window.requestAnimationFrame = function(callback /*element*/) {
             var currTime = new Date().getTime();
             var timeToCall = Math.max(0, 16 - (currTime - lastTime));
             var id = window.setTimeout(function() { callback(currTime + timeToCall); },

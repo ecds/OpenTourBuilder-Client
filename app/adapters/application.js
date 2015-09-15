@@ -1,16 +1,8 @@
 import DS from "ember-data";
+import ENV from "../config/environment";
 
 export default DS.RESTAdapter.extend({
-  // host: 'http://172.16.83.143:8000',
- host: 'http://api-campustour.ecdsweb.org',
- //host: 'http://172.16.83.143:8000',
- 
-  namespace: 'v1',
-  // suffix: '&format=json',
-  // query_marker: '?',
+ host: ENV.APP.API_HOST,
 
-  // buildURL: function(record, suffix, query_marker) {
- //      var s = this._super(record, query_marker, suffix);
- //      return s + this.get('query_marker') + this.get('suffix');
- //    }
+  namespace: 'v1',
 });
