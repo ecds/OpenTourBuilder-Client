@@ -25,13 +25,13 @@ export default Ember.Route.extend({
 
               Ember.$("#open-button").click();
               Ember.run.later(this, function() {
-                  Ember.$('html,body').animate({scrollTop:$elem.offset().top-80});
-              }, 1000);
+                  Ember.$('html,body').animate({scrollTop:$elem.offset().top-140});
+              }, 0);
               Ember.run.later(this, function() {
-                  Ember.$('.tour-section').addClass('stuck').addClass('stuck-bottom');
-                  Ember.$(anchor).removeClass('stuck').removeClass('stuck-bottom');
+                  // Ember.$('.tour-section').addClass('stuck').addClass('stuck-bottom');
+                  // Ember.$(anchor).removeClass('stuck').removeClass('stuck-bottom');
                   window.history.pushState({},"", tour_slug+"?stop="+index);
-              }, 1500);
+              }, 0);
 
             // }
        },
