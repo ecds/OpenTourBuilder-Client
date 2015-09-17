@@ -48,53 +48,53 @@ export default Ember.Component.extend({
     }
 
     function stickArticles(){
-        var $window = Ember.$(window),
-            docViewTop = $window.scrollTop(),
-            docViewBottom = docViewTop + $window.height();
-
-        var clearance = 200;
-        var $article = Ember.$('.tour-list>article:not(.stuck)').first();
-        var elemTop = $article.offset().top;
-        var elemBottom = elemTop + $article.height()+clearance;
-
-        // var index = $article.index();
-        // var index_from_qs = parseInt(location.search.replace('?stop=',''));
-        // var href = '';
-
-        // if(isNaN(index_from_qs) === false && index===0){
-        //   href = location.href.replace(location.search,'');
-        //   window.history.replaceState({},"", href);
+        // var $window = Ember.$(window),
+        //     docViewTop = $window.scrollTop(),
+        //     docViewBottom = docViewTop + $window.height();
+        //
+        // var clearance = 200;
+        // var $article = Ember.$('.tour-list>article:not(.stuck)').first();
+        // var elemTop = $article.offset().top;
+        // var elemBottom = elemTop + $article.height()+clearance;
+        //
+        // // var index = $article.index();
+        // // var index_from_qs = parseInt(location.search.replace('?stop=',''));
+        // // var href = '';
+        //
+        // // if(isNaN(index_from_qs) === false && index===0){
+        // //   href = location.href.replace(location.search,'');
+        // //   window.history.replaceState({},"", href);
+        // // }
+        //
+        // // else if(isNaN(index_from_qs) === true && index === 1){
+        // //   href = location.href+'?stop='+index;
+        // //   window.history.replaceState({},"", href);
+        // // }
+        //
+        // // else if(isNaN(index_from_qs) === false && index_from_qs!==index){
+        // //   href = location.href.replace(location.search,'?stop='+index);
+        // //   window.history.replaceState({},"", href);
+        // // }
+        //
+        // if((docViewBottom > elemBottom ) && (docViewTop >= elemTop) ){
+        //   $article.css({'height': $article.height()});
+        //   $article.addClass('stuck').addClass('stuck-bottom');
+        //   if($article.height()>$window.height()){
+        //     $article.children('.container').css({'bottom':clearance});
+        //   }
         // }
-
-        // else if(isNaN(index_from_qs) === true && index === 1){
-        //   href = location.href+'?stop='+index;
-        //   window.history.replaceState({},"", href);
+        //
+        // var $stuck_article = Ember.$('.tour-list>article.stuck').last();
+        // if($stuck_article.length>0){
+        //   var stuck_elemTop = $stuck_article.offset().top;
+        //   var stuck_elemBottom = stuck_elemTop + $stuck_article.height()+clearance;
+        //
+        //   if((docViewTop < stuck_elemTop) || (docViewBottom < stuck_elemBottom) ){
+        //     $stuck_article.css({'height': ''});
+        //     $stuck_article.removeClass('stuck-bottom').removeClass('stuck');
+        //     $stuck_article.children('.container').css({'bottom':''});
+        //   }
         // }
-
-        // else if(isNaN(index_from_qs) === false && index_from_qs!==index){
-        //   href = location.href.replace(location.search,'?stop='+index);
-        //   window.history.replaceState({},"", href);
-        // }
-
-        if((docViewBottom > elemBottom ) && (docViewTop >= elemTop) ){
-          $article.css({'height': $article.height()});
-          $article.addClass('stuck').addClass('stuck-bottom');
-          if($article.height()>$window.height()){
-            $article.children('.container').css({'bottom':clearance});
-          }
-        }
-
-        var $stuck_article = Ember.$('.tour-list>article.stuck').last();
-        if($stuck_article.length>0){
-          var stuck_elemTop = $stuck_article.offset().top;
-          var stuck_elemBottom = stuck_elemTop + $stuck_article.height()+clearance;
-
-          if((docViewTop < stuck_elemTop) || (docViewBottom < stuck_elemBottom) ){
-            $stuck_article.css({'height': ''});
-            $stuck_article.removeClass('stuck-bottom').removeClass('stuck');
-            $stuck_article.children('.container').css({'bottom':''});
-          }
-        }
 
     }
   }
