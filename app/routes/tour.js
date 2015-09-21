@@ -14,15 +14,19 @@ export default Ember.Route.extend({
 
       var stop_number = this.controller.get('stop');
 
-      Ember.run.schedule('afterRender', function() {
+      Ember.run.scheduleOnce('afterRender', function() {
         menuInit();
 
         if(parseInt(stop_number)){
           var elem = Ember.$('.tour-section');
 
           if(elem[parseInt(stop_number)]){
-            elem = elem[parseInt(stop_number)];
+            // elem = "[data-stop='"+stop_number+"']"
+            elem = ".tour-stop:eq("+stop_number+")";
+            console.log(elem)
+            Ember.run.later(this, function() {
             Ember.$('html,body').animate({scrollTop:Ember.$(elem).offset().top-80},0);
+          },2000);
           }
         }
         else{
